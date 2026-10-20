@@ -1,690 +1,426 @@
 export const lessons = [
   {
-    "title": "A Walk That Changed What We Saw",
-    "zhTitle": "一次散步，让我们看得更仔细",
+    "label": "农场与边界",
+    "title": "A Gate Worth Closing",
+    "zhTitle": "一扇值得随手关上的门",
     "paragraphs": [
       {
-        "en": "When our class entered the nature reserve, a [[biologist]] asked us to put away our phones and listen. A [[zoologist]] followed the calls of hidden birds, while a [[botanist]] stopped beside a flowering tree. An [[ecologist]] reminded us that these living things were connected through food, water, and the places they shared.",
-        "zh": "我们班走进自然保护区时，一位生物学家让我们收起手机，仔细聆听。一位动物学家循着藏在林中的鸟儿的叫声寻找它们，而一位植物学家在一棵开花的树旁停下了脚步。一位生态学家提醒我们，这些生物通过食物、水源以及共同生活的空间彼此联系。"
+        "en": "On our first morning at the rescue farm, rain drove us into a wooden [[barn]]. Hay filled one corner, and a repaired gate leaned against the wall. The animal [[keeper]] handed us brushes and explained the day's work. Before we met any animals, we had to learn how the place was organised.",
+        "zh": "来到救助农场的第一个早晨，雨把我们赶进了一间木制牲口棚。一角堆满干草，修好的门靠在墙边。饲养员把刷子交给我们，并说明当天的工作。在接触动物之前，我们得先了解这里的布局。"
       },
       {
-        "en": "Above the path, a monkey swung between branches. It was a [[vertebrate]], meaning it had a backbone. It was also a [[mammal]]: females of this group feed their young milk. More specifically, it was a [[primate]]. These labels fit together, like smaller boxes placed inside larger ones.",
-        "zh": "小路上方，一只猴子在树枝间荡来荡去。它是脊椎动物，也就是说，它有脊柱。它同时也是哺乳动物：这一类动物的雌性用乳汁喂养幼崽。更具体地说，它属于灵长类。这些分类可以层层嵌套，就像小盒子放在大盒子里面。"
+        "en": "A thick [[hedge]] divided the garden from a narrow path. Beside it, a metal [[bar]] held a gate shut. It looked like a small detail, but the gate formed a useful [[barrier]] between the sheep and the road. Leaving it open for a minute could create a problem that took hours to solve.",
+        "zh": "一道茂密的树篱把花园和一条小路隔开。旁边，一根金属横杆把门扣住。这看起来只是一个小细节，但这扇门是羊群与马路之间一道有用的屏障。把门敞开一分钟，可能惹出花上几个小时才能解决的麻烦。"
       },
       {
-        "en": "By the pond, we found a lizard warming itself on a rock and a frog resting near the water. The lizard was a [[reptile]]; the frog was an [[amphibian]]. Farther away, an otter hunted fish. This [[carnivore]] ate other animals, while a deer, a [[herbivore]], quietly grazed on plants.",
-        "zh": "池塘边，我们发现一只蜥蜴在岩石上晒太阳取暖，一只青蛙在水边休息。蜥蜴是爬行动物，青蛙是两栖动物。稍远的地方，一只水獭正在捕鱼。这种食肉动物以其他动物为食，而一只作为食草动物的鹿则安静地吃着植物。"
+        "en": "Later, a [[shepherd]] brought several sheep back from the field. One was so [[tame]] that it waited calmly while we cleaned its shelter. I wanted to stroke its head, but the shepherd asked me to let it approach first. Being comfortable around people did not mean it welcomed every touch.",
+        "zh": "后来，一位牧羊人把几只羊从田里带回来。其中一只十分温顺，在我们清理它的住所时安静地等着。我想摸摸它的头，但牧羊人让我先等它自己靠近。习惯与人相处，并不意味着它欢迎每一次触碰。"
       },
       {
-        "en": "At first, I had called every unfamiliar animal a strange [[creature]]. Now I could look more carefully. The reserve's [[wildlife]] included many kinds of animals, or [[fauna]], living among its plants, or [[flora]]. Before leaving, we recorded each [[species]] we could identify. A simple walk had become a lesson in noticing differences—and connections.",
-        "zh": "起初，我把每一种不熟悉的动物都叫作奇怪的生物。现在，我能观察得更仔细了。保护区的野生动物种类繁多，构成了当地的动物群；它们生活在当地的植物群之中。离开前，我们记录了每一种能够辨认的物种。一次简单的散步，变成了一堂教我们发现差异与联系的课。"
+        "en": "By lunchtime, our jobs seemed less exciting than I had imagined. We had swept floors, checked fences, and closed doors. Yet these ordinary tasks made the animals' day safer and calmer. I began to see that good care often depended on noticing the small things and doing them consistently.",
+        "zh": "到了午饭时间，我们的工作似乎没有我想象中那么刺激。我们扫了地，检查了围栏，还关了门。然而，这些平常的工作让动物的一天更安全、更安稳。我开始明白，好的照料往往依靠留意小事，并坚持把它们做好。"
       }
     ],
-    "label": "生物与分类",
     "words": [
       {
-        "word": "biologist",
-        "ipa": "/baɪˈɒlədʒɪst/",
-        "meaning": "n. 生物学家",
+        "word": "barn",
+        "ipa": "/bɑːn/",
+        "meaning": "n. 谷仓；牲口棚",
         "lesson": 0
       },
       {
-        "word": "zoologist",
-        "ipa": "/zuːˈɒlədʒɪst/",
-        "meaning": "n. 动物学家",
+        "word": "hedge",
+        "ipa": "/hedʒ/",
+        "meaning": "n. 树篱；障碍物",
         "lesson": 0
       },
       {
-        "word": "botanist",
-        "ipa": "/ˈbɒtənɪst/",
-        "meaning": "n. 植物学家",
+        "word": "barrier",
+        "ipa": "/ˈbæriə/",
+        "meaning": "n. 障碍；屏障",
         "lesson": 0
       },
       {
-        "word": "ecologist",
-        "ipa": "/ɪˈkɒlədʒɪst/",
-        "meaning": "n. 生态学家",
+        "word": "bar",
+        "ipa": "/bɑː/",
+        "meaning": "n. 栏杆；条；长块",
         "lesson": 0
       },
       {
-        "word": "vertebrate",
-        "ipa": "/ˈvɜːtɪbrət/",
-        "meaning": "n. 脊椎动物",
+        "word": "keeper",
+        "ipa": "/ˈkiːpə/",
+        "meaning": "n. 看守人；饲养员",
         "lesson": 0
       },
       {
-        "word": "mammal",
-        "ipa": "/ˈmæməl/",
-        "meaning": "n. 哺乳动物",
+        "word": "shepherd",
+        "ipa": "/ˈʃepəd/",
+        "meaning": "n. 牧羊人；羊倌",
         "lesson": 0
       },
       {
-        "word": "primate",
-        "ipa": "/ˈpraɪmeɪt/",
-        "meaning": "n. 灵长目动物",
-        "lesson": 0
-      },
-      {
-        "word": "reptile",
-        "ipa": "/ˈreptaɪl/",
-        "meaning": "n. 爬行动物",
-        "lesson": 0
-      },
-      {
-        "word": "amphibian",
-        "ipa": "/æmˈfɪbiən/",
-        "meaning": "n. 两栖动物",
-        "lesson": 0
-      },
-      {
-        "word": "carnivore",
-        "ipa": "/ˈkɑːnɪvɔː/",
-        "meaning": "n. 食肉动物",
-        "lesson": 0
-      },
-      {
-        "word": "herbivore",
-        "ipa": "/ˈhɜːbɪvɔː/",
-        "meaning": "n. 食草动物",
-        "lesson": 0
-      },
-      {
-        "word": "creature",
-        "ipa": "/ˈkriːtʃə/",
-        "meaning": "n. 生物；动物",
-        "lesson": 0
-      },
-      {
-        "word": "wildlife",
-        "ipa": "/ˈwaɪldlaɪf/",
-        "meaning": "n. 野生动植物",
-        "lesson": 0
-      },
-      {
-        "word": "fauna",
-        "ipa": "/ˈfɔːnə/",
-        "meaning": "n. 某地区的动物群",
-        "lesson": 0
-      },
-      {
-        "word": "flora",
-        "ipa": "/ˈflɔːrə/",
-        "meaning": "n. 某地区的植物群",
-        "lesson": 0
-      },
-      {
-        "word": "species",
-        "ipa": "/ˈspiːʃiːz/",
-        "meaning": "n. 物种（单复数同形）",
+        "word": "tame",
+        "ipa": "/teɪm/",
+        "meaning": "adj. 驯服的　v. 驯养；驯服",
         "lesson": 0
       }
     ]
   },
   {
-    "title": "Groups and Family Trees",
-    "zhTitle": "群体与家族树",
+    "label": "看不见的世界",
+    "title": "The World on a Glass Slide",
+    "zhTitle": "玻片上的世界",
     "paragraphs": [
       {
-        "en": "At dawn, our guide led us into a nature reserve. A [[flock]] of geese crossed the sky, while a [[herd]] of deer moved through the grass. Near a flowering tree, a [[swarm]] of bees gathered. By lunchtime, a small [[crowd]] of visitors had grown into a noisy [[throng]] around the viewing platform.",
-        "zh": "黎明时，向导带我们走进一处自然保护区。一群鹅掠过天空，一群鹿则穿行在草丛中。一棵开花的树旁聚集着一群蜜蜂。到了午餐时间，原本不多的游客已变成拥挤喧闹的人群，围在观景台周围。"
+        "en": "Our biology lesson began with a model of a rabbit. We studied its [[anatomy]], following the position of the heart, lungs, and stomach. Then our teacher changed the scale of the discussion. A [[gene]], she explained, is a section of DNA that carries information. Understanding an animal means looking at more than its outward shape.",
+        "zh": "生物课从一个兔子模型开始。我们研究它的身体结构，依次找到心脏、肺和胃的位置。随后，老师把讨论转向更微小的层面。她解释说，基因是携带信息的一段 DNA。了解一种动物，不能只看它外在的形状。"
       },
       {
-        "en": "Scientists ask where these animals [[originate]] and how their traits develop. Modern birds [[derive]] many features from earlier dinosaur lineages. Similarities can [[stem]] from shared ancestry, although a similar environment can also produce similar adaptations. Appearance alone therefore cannot tell us the whole story of an animal's history.",
-        "zh": "科学家会研究这些动物起源于哪里，以及它们的特征如何形成。现代鸟类的许多特征源自早期恐龙谱系。相似之处可能来自共同的祖先，不过，相似的环境也可能使动物形成相似的适应特征。因此，单凭外貌无法了解一种动物完整的演化历史。"
+        "en": "At the next table, a glass slide revealed a tiny moving [[microbe]]. The teacher showed us pictures of [[bacteria]] and explained that many are harmless or useful. A [[germ]] is a word people commonly use for a microorganism that can cause disease. The labels overlap, but they do not all mean exactly the same thing.",
+        "zh": "在下一张桌子上，我们通过玻片看到了一个正在移动的微生物。老师展示了细菌的图片，并解释说，许多细菌无害，甚至有益。人们通常用 germ 这个词指可能致病的微生物，也就是病菌。这些称呼的范围有所重叠，但含义并不完全相同。"
       },
       {
-        "en": "A family tree helps explain those connections. A sparrow is a [[descendant]] of earlier bird populations, and shares a distant [[ancestor]] with many other birds. Scientists place sparrows within a smaller [[subgroup]]. Their [[offspring]] inherit genes from both parents, linking each new generation to the generations that came before it.",
-        "zh": "家族树有助于解释这些联系。麻雀是早期鸟类种群的后裔，与许多其他鸟类拥有遥远的共同祖先。科学家将麻雀划入一个更小的亚群。它们的后代从父母双方继承基因，将每一个新世代与此前的世代联系起来。"
+        "en": "A [[virus]] was shown in a separate diagram. Unlike a bacterium, it depends on a host cell to make copies of itself. Our classroom microscope could not show the details in that diagram. The teacher asked us to distinguish what we had actually observed from what we had learned through other kinds of evidence.",
+        "zh": "另一张图单独展示了病毒。与细菌不同，病毒依赖宿主细胞来复制自身。教室里的显微镜无法显示图中的那些细节。老师让我们区分亲眼观察到的东西，以及通过其他类型的证据了解到的知识。"
       },
       {
-        "en": "Back at the station, we read an old tale about a frightening [[beast]]. The writer described it as a violent [[brute]]. Our guide reminded us that such labels reveal human fears. A predator hunting for food is not being [[cruel]]; understanding its behaviour requires observation, rather than a dramatic story.",
-        "zh": "回到观察站后，我们读了一则关于可怕野兽的古老故事。作者把它描写成一头凶暴的畜生。向导提醒我们，这些称呼反映的是人类的恐惧。捕食者为了食物而狩猎，并不意味着它残忍；要理解它的行为，需要观察，而不能只靠戏剧化的故事。"
+        "en": "Finally, we examined a fictional report about an [[epidemic]] on several farms. Dates, locations, and shared equipment offered clues about how the disease might have spread. We could suggest explanations, but we could not prove them from one chart. Science required careful questions as well as interesting answers.",
+        "zh": "最后，我们研究了一份虚构的报告，内容是几家农场发生的流行病。日期、地点和共用设备为疾病可能如何传播提供了线索。我们可以提出解释，却不能仅凭一张图表就证明它们。科学既需要有意思的答案，也需要严谨的问题。"
       }
     ],
-    "label": "群体与起源",
     "words": [
       {
-        "word": "flock",
-        "ipa": "/flɒk/",
-        "meaning": "n. 鸟群；羊群　v. 聚集",
+        "word": "anatomy",
+        "ipa": "/əˈnætəmi/",
+        "meaning": "n. 解剖学；身体结构",
         "lesson": 1
       },
       {
-        "word": "herd",
-        "ipa": "/hɜːd/",
-        "meaning": "n. 兽群；畜群",
+        "word": "gene",
+        "ipa": "/dʒiːn/",
+        "meaning": "n. 基因",
         "lesson": 1
       },
       {
-        "word": "swarm",
-        "ipa": "/swɔːm/",
-        "meaning": "n. 一大群昆虫　v. 成群飞行",
+        "word": "germ",
+        "ipa": "/dʒɜːm/",
+        "meaning": "n. 病菌；微生物",
         "lesson": 1
       },
       {
-        "word": "crowd",
-        "ipa": "/kraʊd/",
-        "meaning": "n. 人群；观众",
+        "word": "bacteria",
+        "ipa": "/bækˈtɪəriə/",
+        "meaning": "n. 细菌（bacterium 的复数）",
         "lesson": 1
       },
       {
-        "word": "throng",
-        "ipa": "/θrɒŋ/",
-        "meaning": "n. 密集的人群　v. 群集",
+        "word": "virus",
+        "ipa": "/ˈvaɪərəs/",
+        "meaning": "n. 病毒",
         "lesson": 1
       },
       {
-        "word": "beast",
-        "ipa": "/biːst/",
-        "meaning": "n. 野兽；兽",
+        "word": "microbe",
+        "ipa": "/ˈmaɪkrəʊb/",
+        "meaning": "n. 微生物",
         "lesson": 1
       },
       {
-        "word": "brute",
-        "ipa": "/bruːt/",
-        "meaning": "n. 野兽；残忍或粗暴的人",
-        "lesson": 1
-      },
-      {
-        "word": "cruel",
-        "ipa": "/ˈkruːəl/",
-        "meaning": "adj. 残忍的；残酷的",
-        "lesson": 1
-      },
-      {
-        "word": "originate",
-        "ipa": "/əˈrɪdʒɪneɪt/",
-        "meaning": "v. 起源；发源",
-        "lesson": 1
-      },
-      {
-        "word": "derive",
-        "ipa": "/dɪˈraɪv/",
-        "meaning": "v. 源自；获得",
-        "lesson": 1
-      },
-      {
-        "word": "stem",
-        "ipa": "/stem/",
-        "meaning": "v. 起源于（stem from）　n. 茎",
-        "lesson": 1
-      },
-      {
-        "word": "descendant",
-        "ipa": "/dɪˈsendənt/",
-        "meaning": "n. 后裔；后代",
-        "lesson": 1
-      },
-      {
-        "word": "ancestor",
-        "ipa": "/ˈænsestə/",
-        "meaning": "n. 祖先",
-        "lesson": 1
-      },
-      {
-        "word": "subgroup",
-        "ipa": "/ˈsʌbɡruːp/",
-        "meaning": "n. 子群；小分组",
-        "lesson": 1
-      },
-      {
-        "word": "offspring",
-        "ipa": "/ˈɒfsprɪŋ/",
-        "meaning": "n. 后代；幼崽（单复数同形）",
+        "word": "epidemic",
+        "ipa": "/ˌepɪˈdemɪk/",
+        "meaning": "n. 流行病；盛行　adj. 流行性的",
         "lesson": 1
       }
     ]
   },
   {
-    "title": "A Season of New Life",
-    "zhTitle": "新生命的季节",
+    "label": "身体如何运转",
+    "title": "More Than a Bowl of Food",
+    "zhTitle": "不只是一碗食物",
     "paragraphs": [
       {
-        "en": "At the field station, Maya watched two birds begin their [[courtship]] with songs and short flights. Once each had a [[mate]], they built a nest. The female would [[lay]] eggs, and both parents would keep them warm. After the chicks began to [[hatch]], the adults worked together to [[feed]] their hungry [[brood]].",
-        "zh": "在野外研究站，玛雅看到两只鸟通过鸣唱和短距离飞行展开求偶。有了配偶后，它们便筑起鸟巢。雌鸟会产卵，父母双方都会为鸟蛋保温。雏鸟开始孵化出壳后，成年鸟会一起为这窝饥饿的小鸟喂食。"
+        "en": "At the wildlife centre, I watched a hungry fox [[devour]] its meal. It was tempting to think that feeding an animal simply meant filling a bowl. The staff showed me a chart instead. Its diet supplied [[protein]] and other nutrients, while each [[vitamin]] had a particular role in keeping the body working.",
+        "zh": "在野生动物中心，我看着一只饥饿的狐狸狼吞虎咽地吃完食物。人很容易以为，喂养动物不过是把碗装满。工作人员却给我看了一张表：它的食物提供蛋白质和其他营养，而每一种维生素都在维持身体运转方面发挥特定作用。"
       },
       {
-        "en": "In the nearby pond, fish followed a different pattern. Many would [[spawn]] by releasing eggs and sperm into the water. The young needed time to [[mature]] before they could [[breed]] themselves. Maya measured water temperature and recorded feeding conditions, because survival depended on more than simply producing a large number of eggs.",
-        "zh": "在附近的池塘里，鱼类采用另一种繁殖方式。许多鱼会把卵和精子释放到水中进行产卵繁殖。幼鱼需要经过一段时间才能发育成熟，继而自行繁殖。玛雅测量水温，并记录摄食条件，因为生存并不只取决于产下大量的卵。"
+        "en": "The chart introduced [[metabolism]]: the many chemical processes that take place within a living body. Some processes release energy, while others build or repair materials. Eating is only the visible beginning of a much longer story. Inside the animal, different organs continue their work long after the bowl is empty.",
+        "zh": "这张表介绍了新陈代谢，也就是生物体内发生的许多化学过程。有些过程释放能量，有些则构建或修复身体所需的物质。进食只是一个更长过程的可见开端。即使食碗已经空了，动物体内的不同器官仍在继续工作。"
       },
       {
-        "en": "The station also studied what happens when closely related species [[interbreed]]. Researchers could [[hybridise]] two plant species by transferring pollen between them. Some resulting hybrids were fertile; others showed [[sterility]] and could not produce seeds through sexual reproduction. A successful cross did not guarantee that its descendants would reproduce successfully too.",
-        "zh": "研究站还考察亲缘关系较近的物种相互交配时会发生什么。研究人员可以通过在两个植物物种之间传递花粉，使它们杂交。产生的部分杂交后代具有生育能力，另一些则表现出不育，无法通过有性生殖产生种子。一次杂交成功，并不保证其后代也能成功繁殖。"
+        "en": "Two verbs helped me understand the difference between making something useful and removing waste. Glands [[secrete]] substances such as hormones. The kidneys help the body [[excrete]] waste in urine. The words sound similar, but substituting one for the other would change the explanation. I wrote a short note beside each one.",
+        "zh": "两个动词帮助我理解了释放有用物质与排出废物之间的区别。腺体会分泌激素等物质；肾脏帮助身体通过尿液排出废物。这两个英语词听起来相似，但相互替换就会改变解释的含义。我在每个词旁都写了一条简短笔记。"
       },
       {
-        "en": "By summer, tiny aquatic plants began to [[proliferate]] across the pond. Maya recorded their spread while monitoring the fish and birds. Her notebook showed a busy network of births, growth, and losses. Each species had its own rhythm, but all depended on enough food, suitable habitat, and time for the next generation to develop.",
-        "zh": "到了夏天，微小的水生植物开始在池塘中大量繁殖。玛雅在记录鱼类和鸟类的同时，也统计这些植物的扩展情况。她的笔记呈现出一个充满出生、生长与死亡的活跃网络。每个物种都有自己的节奏，但都需要充足的食物、适宜的栖息地，以及让下一代发育的时间。"
+        "en": "Even the feeding equipment had been carefully chosen. A heavy dish was less likely to tip over, and a simple holder kept it in place. The design was [[functional]] rather than decorative. Before leaving, I looked again at the fox's empty bowl. What had seemed ordinary now connected nutrition, biology, and thoughtful daily care.",
+        "zh": "连喂食设备都经过仔细选择。较重的食盆不容易翻倒，一个简单的支架把它固定在原位。这种设计注重实用功能，而非装饰。离开前，我又看了一眼狐狸的空碗。原本显得平常的东西，此时把营养、生物学和细致的日常照料联系起来了。"
       }
     ],
-    "label": "繁衍季节",
     "words": [
       {
-        "word": "mate",
-        "ipa": "/meɪt/",
-        "meaning": "v. 交配　n. 配偶",
+        "word": "metabolism",
+        "ipa": "/məˈtæbəlɪzəm/",
+        "meaning": "n. 新陈代谢",
         "lesson": 2
       },
       {
-        "word": "courtship",
-        "ipa": "/ˈkɔːtʃɪp/",
-        "meaning": "n. 求偶",
+        "word": "protein",
+        "ipa": "/ˈprəʊtiːn/",
+        "meaning": "n. 蛋白质",
         "lesson": 2
       },
       {
-        "word": "lay",
-        "ipa": "/leɪ/",
-        "meaning": "v. 产卵；放置",
+        "word": "vitamin",
+        "ipa": "/ˈvɪtəmɪn/",
+        "meaning": "n. 维生素",
         "lesson": 2
       },
       {
-        "word": "hatch",
-        "ipa": "/hætʃ/",
-        "meaning": "v. 孵化；破壳",
+        "word": "secrete",
+        "ipa": "/sɪˈkriːt/",
+        "meaning": "v. 分泌",
         "lesson": 2
       },
       {
-        "word": "feed",
-        "ipa": "/fiːd/",
-        "meaning": "v. 喂养；进食",
+        "word": "excrete",
+        "ipa": "/ɪkˈskriːt/",
+        "meaning": "v. 排泄；排出",
         "lesson": 2
       },
       {
-        "word": "brood",
-        "ipa": "/bruːd/",
-        "meaning": "n. 一窝幼鸟　v. 孵蛋",
+        "word": "devour",
+        "ipa": "/dɪˈvaʊə/",
+        "meaning": "v. 吞食；狼吞虎咽地吃",
         "lesson": 2
       },
       {
-        "word": "spawn",
-        "ipa": "/spɔːn/",
-        "meaning": "v. 产卵　n. 鱼或蛙的卵",
-        "lesson": 2
-      },
-      {
-        "word": "mature",
-        "ipa": "/məˈtʃʊə/",
-        "meaning": "adj. 成熟的　v. 成熟",
-        "lesson": 2
-      },
-      {
-        "word": "breed",
-        "ipa": "/briːd/",
-        "meaning": "v. 繁殖；饲养　n. 品种",
-        "lesson": 2
-      },
-      {
-        "word": "hybridise",
-        "ipa": "/ˈhaɪbrɪdaɪz/",
-        "meaning": "v. 使杂交；杂交",
-        "lesson": 2
-      },
-      {
-        "word": "interbreed",
-        "ipa": "/ˌɪntəˈbriːd/",
-        "meaning": "v. 品种间杂交",
-        "lesson": 2
-      },
-      {
-        "word": "sterility",
-        "ipa": "/stəˈrɪləti/",
-        "meaning": "n. 不育；不育性",
-        "lesson": 2
-      },
-      {
-        "word": "proliferate",
-        "ipa": "/prəˈlɪfəreɪt/",
-        "meaning": "v. 迅速增殖；大量增加",
+        "word": "functional",
+        "ipa": "/ˈfʌŋkʃənəl/",
+        "meaning": "adj. 功能的；起作用的；实用的",
         "lesson": 2
       }
     ]
   },
   {
-    "title": "Small Bodies, Useful Parts",
-    "zhTitle": "小小身体，各有所长",
+    "label": "感知与学习",
+    "title": "Listening Before Looking",
+    "zhTitle": "先听，再看",
     "paragraphs": [
       {
-        "en": "An animal's body offers clues to its daily life. A cat uses each [[paw]] to move quietly and a sharp [[claw]] to grip. A duck's [[beak]] collects food, while a fish's [[fin]] helps it turn. Beneath a mammal's [[fur]] lies sensitive [[skin]]; a [[bristle]] is a coarse, stiff hair.",
-        "zh": "动物的身体可以透露其日常生活的线索。猫用脚掌悄悄移动，用锋利的爪子抓牢物体。鸭子的喙用来获取食物，而鱼鳍帮助鱼转向。哺乳动物的皮毛下面是敏感的皮肤；刚毛则是一种粗硬的毛。"
+        "en": "Our evening workshop began in a quiet room. A guide played a faint rustling sound and asked where it came from. My first answer was based on [[instinct]], not careful thought. Her explanation felt [[intuitive]]: compare what reaches each ear before choosing a direction. Still, I needed practice to do it well.",
+        "zh": "傍晚的工作坊在一间安静的房间里开始。讲解员播放了一阵轻微的沙沙声，问它来自哪里。我的第一个回答出于直觉，而非仔细思考。她的解释很容易凭直觉理解：先比较两只耳朵听到的声音，再判断方向。不过，要做好这件事，我仍然需要练习。"
       },
       {
-        "en": "A bird's [[feather]] may look delicate, but many feathers work together to protect its body and support flight. A decorative [[plume]] can help attract a mate. As the bird opens each [[wing]], overlapping feathers spread into a broad surface. Nearby, a resting fox begins to [[curl]] up to conserve heat.",
-        "zh": "鸟的一根羽毛看起来或许很纤细，但许多羽毛一起发挥作用，保护身体并支持飞行。用于装饰的翎羽可以帮助吸引配偶。鸟张开双翼时，重叠的羽毛展开，形成宽阔的表面。附近，一只休息中的狐狸开始蜷缩起来，以保存热量。"
+        "en": "Outside, a [[sensitive]] microphone picked up sounds that I had missed. The team used this [[acoustic]] equipment to record activity after dark. Nearby, an [[optical]] instrument helped another student examine a distant shape. Listening and looking gave us different kinds of information about the same patch of woodland.",
+        "zh": "走到室外，一支灵敏的麦克风捕捉到了我没有留意到的声音。团队用这套声学设备记录天黑后的活动。附近，一件光学仪器帮助另一名学生观察远处的轮廓。聆听和观察为我们提供了关于同一片林地的不同信息。"
       },
       {
-        "en": "In the grass, an [[insect]] has six legs and three main body sections. A [[butterfly]] visits a flower, and a male [[cricket]] produces a call by rubbing its wings together. A [[spider]] waits close by, but it is an arachnid, with eight legs. Beneath them, a [[worm]] works its way through damp soil.",
-        "zh": "草丛里的昆虫有六条腿，身体主要分为三个部分。一只蝴蝶来到花朵旁，一只雄性蟋蟀摩擦翅膀发出鸣声。附近，一只蜘蛛正在等待，但它属于蛛形纲，有八条腿。在它们下方，一条蠕虫正在潮湿的土壤中穿行。"
+        "en": "I had assumed that a single test could measure an animal's [[intelligence]]. The guide asked whether the test suited the animal's senses and experience. A task designed for human eyes might overlook another species' strengths. To recognise its [[potential]], we first had to question our own expectations about what a clever response should look like.",
+        "zh": "我原以为，只用一个测试就能衡量动物的智力。讲解员问，这个测试是否适合该动物的感官特点和经历。一个为人类视觉设计的任务，可能忽略其他物种的优势。要认识到它的潜力，我们首先得质疑自己的预设：聪明的反应究竟应该是什么样的？"
       },
       {
-        "en": "Some small creatures affect human life. A garden [[pest]] may damage vegetables, while a female [[mosquito]] can take a blood meal before laying eggs. A [[parasite]] lives in or on a host and gains resources at that host's expense. These labels describe relationships, not moral qualities: even troublesome animals belong to wider food webs.",
-        "zh": "有些小生物会影响人类生活。花园里的害虫可能损坏蔬菜，而雌性蚊子可能在产卵前吸食血液。寄生虫生活在宿主体内或体表，以损害宿主为代价获取资源。这些称呼描述的是生物之间的关系，而不是道德品质；即使是让人困扰的动物，也属于更广大的食物网。"
+        "en": "When the wind grew stronger, we moved our equipment and changed the order of our activities. A [[flexible]] plan allowed us to keep learning without forcing the evening to match a timetable. I went home with fewer confident guesses and better questions. Paying attention, I realised, was a skill that could improve.",
+        "zh": "风渐渐变大后，我们移动了设备，也调整了活动顺序。一个灵活的计划让我们能继续学习，而不用强迫整个晚上严格符合时间表。回家时，我少了一些自信满满的猜测，多了一些更好的问题。我意识到，专注观察是一种可以提升的能力。"
       }
     ],
-    "label": "身体与小生物",
     "words": [
       {
-        "word": "claw",
-        "ipa": "/klɔː/",
-        "meaning": "n. 爪；螯",
+        "word": "instinct",
+        "ipa": "/ˈɪnstɪŋkt/",
+        "meaning": "n. 本能；天性；直觉",
         "lesson": 3
       },
       {
-        "word": "beak",
-        "ipa": "/biːk/",
-        "meaning": "n. 鸟喙；鸟嘴",
+        "word": "intuitive",
+        "ipa": "/ɪnˈtjuːɪtɪv/",
+        "meaning": "adj. 直觉的；易凭直觉理解的",
         "lesson": 3
       },
       {
-        "word": "paw",
-        "ipa": "/pɔː/",
-        "meaning": "n. 动物的脚掌",
+        "word": "potential",
+        "ipa": "/pəˈtenʃəl/",
+        "meaning": "n. 潜力　adj. 潜在的",
         "lesson": 3
       },
       {
-        "word": "fin",
-        "ipa": "/fɪn/",
-        "meaning": "n. 鳍",
+        "word": "intelligence",
+        "ipa": "/ɪnˈtelɪdʒəns/",
+        "meaning": "n. 智力；智慧；情报",
         "lesson": 3
       },
       {
-        "word": "skin",
-        "ipa": "/skɪn/",
-        "meaning": "n. 皮肤；外皮",
+        "word": "sensitive",
+        "ipa": "/ˈsensɪtɪv/",
+        "meaning": "adj. 敏感的；灵敏的；易受影响的",
         "lesson": 3
       },
       {
-        "word": "fur",
-        "ipa": "/fɜː/",
-        "meaning": "n. 软毛；毛皮",
+        "word": "flexible",
+        "ipa": "/ˈfleksəbəl/",
+        "meaning": "adj. 灵活的；可弯曲的；易变通的",
         "lesson": 3
       },
       {
-        "word": "bristle",
-        "ipa": "/ˈbrɪsl/",
-        "meaning": "n. 鬃毛；硬毛",
+        "word": "acoustic",
+        "ipa": "/əˈkuːstɪk/",
+        "meaning": "adj. 声音的；声学的；听觉的",
         "lesson": 3
       },
       {
-        "word": "curl",
-        "ipa": "/kɜːl/",
-        "meaning": "v. 卷曲　n. 卷曲状物",
-        "lesson": 3
-      },
-      {
-        "word": "feather",
-        "ipa": "/ˈfeðə/",
-        "meaning": "n. 羽毛",
-        "lesson": 3
-      },
-      {
-        "word": "plume",
-        "ipa": "/pluːm/",
-        "meaning": "n. 大羽毛；羽饰",
-        "lesson": 3
-      },
-      {
-        "word": "wing",
-        "ipa": "/wɪŋ/",
-        "meaning": "n. 翅膀",
-        "lesson": 3
-      },
-      {
-        "word": "insect",
-        "ipa": "/ˈɪnsekt/",
-        "meaning": "n. 昆虫",
-        "lesson": 3
-      },
-      {
-        "word": "butterfly",
-        "ipa": "/ˈbʌtəflaɪ/",
-        "meaning": "n. 蝴蝶",
-        "lesson": 3
-      },
-      {
-        "word": "cricket",
-        "ipa": "/ˈkrɪkɪt/",
-        "meaning": "n. 蟋蟀",
-        "lesson": 3
-      },
-      {
-        "word": "spider",
-        "ipa": "/ˈspaɪdə/",
-        "meaning": "n. 蜘蛛",
-        "lesson": 3
-      },
-      {
-        "word": "worm",
-        "ipa": "/wɜːm/",
-        "meaning": "n. 蠕虫",
-        "lesson": 3
-      },
-      {
-        "word": "pest",
-        "ipa": "/pest/",
-        "meaning": "n. 害虫；有害动物",
-        "lesson": 3
-      },
-      {
-        "word": "mosquito",
-        "ipa": "/məˈskiːtəʊ/",
-        "meaning": "n. 蚊子",
-        "lesson": 3
-      },
-      {
-        "word": "parasite",
-        "ipa": "/ˈpærəsaɪt/",
-        "meaning": "n. 寄生虫；寄生生物",
+        "word": "optical",
+        "ipa": "/ˈɒptɪkəl/",
+        "meaning": "adj. 光学的；视觉的",
         "lesson": 3
       }
     ]
   },
   {
-    "title": "A Journey Through the Wild",
-    "zhTitle": "穿越野生世界",
+    "label": "昼夜与寒冬",
+    "title": "Life on a Different Clock",
+    "zhTitle": "按另一种时钟生活",
     "paragraphs": [
       {
-        "en": "The wildlife exhibition opened with a giant screen showing the southern ocean. A [[penguin]] hurried across the ice while a [[seal]] rested beside the water. Farther out, a [[whale]] rose to the surface and breathed. Watching these scenes, I understood that animals need very different places to live.",
-        "zh": "野生动物展的入口处，一块巨大的屏幕正展示着南方的海洋。一只企鹅匆匆穿过冰面，一只海豹在水边休息。更远处，一头鲸浮上水面呼吸。看着这些画面，我明白了：不同的动物需要截然不同的生活环境。"
+        "en": "The woodland camera seemed quiet all afternoon. After sunset, however, a [[nocturnal]] mouse appeared near a fallen branch. A few minutes later, an owl crossed the picture. The mouse could become [[prey]], and the owl was a [[predator]]. The camera showed a relationship that daytime visitors rarely witnessed.",
+        "zh": "林地摄像机的画面整个下午似乎都很安静。然而，日落后，一只夜间活动的老鼠出现在一根倒下的树枝旁。几分钟后，一只猫头鹰掠过画面。老鼠可能成为猎物，而猫头鹰则是捕食者。摄像机呈现了白天的游客很少目睹的一种关系。"
       },
       {
-        "en": "In the next room, a [[kangaroo]] jumped across an Australian grassland. Another video followed a sea [[turtle]] through clear water, then showed a [[tortoise]] walking slowly on land. Beyond them, a [[camel]] crossed a sandy landscape. Each animal moved in its own way, perfectly suited to its surroundings.",
-        "zh": "在下一个展厅，一只袋鼠跳跃着穿过澳大利亚的草原。另一段视频先跟拍一只游过清澈海水的海龟，随后展示了一只在陆地上缓慢行走的陆龟。在它们后面的屏幕上，一只骆驼穿过沙地。每种动物都有自己的运动方式，与周围的环境十分相适应。"
+        "en": "As the seasons changed, the guide showed us a second set of recordings. Some animals entered [[hibernation]], while certain plants remained [[dormant]] until conditions improved. These were different biological responses, not simply two names for an ordinary night's sleep. We compared the dates and noticed how strongly the season shaped the scene.",
+        "zh": "随着季节变化，讲解员给我们看了第二组录像。有些动物进入冬眠，某些植物则保持休眠，直到条件改善。这是不同的生物学反应，并非普通夜间睡眠的两个名称。我们比较日期，发现季节对眼前的景象有着多么明显的影响。"
       },
       {
-        "en": "A peaceful [[panda]] ate bamboo on one screen. Nearby, an [[elephant]] used its [[trunk]] to pick up food. The guide showed us old objects made from [[ivory]] and explained their connection to elephant hunting. She also pointed to a rhinoceros's [[horn]], reminding us that wild animals deserve protection.",
-        "zh": "一块屏幕上，一只安静的熊猫正在吃竹子。旁边，一头大象用鼻子卷起食物。讲解员给我们看了用象牙制成的旧物，并解释了这些物品与猎杀大象之间的联系。她还指着一头犀牛的角，提醒我们野生动物应该得到保护。"
+        "en": "During our observations, we would [[alternate]] between watching the camera and taking notes. It became clear that wildlife could [[exist]] close to our homes without being easy to see. An empty-looking garden at noon might be busy after midnight. Absence from one photograph was not proof of absence from the place.",
+        "zh": "观察过程中，我们轮流看摄像画面、做笔记。我们渐渐明白，野生动物可以生活在家门口，却不容易被看见。中午看似空无一物的花园，午夜后可能很热闹。一张照片里没有出现某种动物，并不能证明那个地方没有它。"
       },
       {
-        "en": "The final room brought us into a forest, where a [[bear]] searched for food, a [[wolf]] followed a trail, and a [[fox]] disappeared among the trees. At the exit stood a carved [[dragon]] from an old story. Unlike the animals we had watched, this creature belonged to myth.",
-        "zh": "最后一个展厅把我们带进了一片森林：一头熊在寻找食物，一匹狼沿着一条小径前行，一只狐狸消失在树木之间。出口处立着一尊取材于古老故事的龙雕像。与我们刚才看到的动物不同，这种生物属于神话世界。"
+        "en": "An older resident also described winters when local families depended on small gardens for [[subsistence]]. That memory connected the landscape to human life as well as animal life. We ended the visit by discussing how food and shelter mattered across seasons, while recognising that people and other species faced different pressures.",
+        "zh": "一位年长的居民还讲起了过去的冬天：当地一些家庭依靠小菜园勉强维持生计。那段记忆把这片风景同时与人类和动物的生活联系起来。参观结束时，我们讨论了食物与住所如何在不同季节发挥作用，也认识到人类与其他物种面临的压力有所不同。"
       }
     ],
-    "label": "野外之旅",
     "words": [
       {
-        "word": "penguin",
-        "ipa": "/ˈpeŋɡwɪn/",
-        "meaning": "n. 企鹅",
+        "word": "nocturnal",
+        "ipa": "/nɒkˈtɜːnəl/",
+        "meaning": "adj. 夜间发生的；夜间活动的",
         "lesson": 4
       },
       {
-        "word": "seal",
-        "ipa": "/siːl/",
-        "meaning": "n. 海豹　v. 密封",
+        "word": "dormant",
+        "ipa": "/ˈdɔːmənt/",
+        "meaning": "adj. 休眠的；暂不活动的",
         "lesson": 4
       },
       {
-        "word": "whale",
-        "ipa": "/weɪl/",
-        "meaning": "n. 鲸",
+        "word": "hibernation",
+        "ipa": "/ˌhaɪbəˈneɪʃən/",
+        "meaning": "n. 冬眠",
         "lesson": 4
       },
       {
-        "word": "kangaroo",
-        "ipa": "/ˌkæŋɡəˈruː/",
-        "meaning": "n. 袋鼠",
+        "word": "alternate",
+        "ipa": "/ˈɔːltəneɪt/",
+        "meaning": "v. 交替；轮流",
         "lesson": 4
       },
       {
-        "word": "turtle",
-        "ipa": "/ˈtɜːtl/",
-        "meaning": "n. 龟；海龟",
+        "word": "exist",
+        "ipa": "/ɪɡˈzɪst/",
+        "meaning": "v. 存在；生存",
         "lesson": 4
       },
       {
-        "word": "tortoise",
-        "ipa": "/ˈtɔːtəs/",
-        "meaning": "n. 陆龟",
+        "word": "subsistence",
+        "ipa": "/səbˈsɪstəns/",
+        "meaning": "n. 勉强维持生活；基本生计",
         "lesson": 4
       },
       {
-        "word": "camel",
-        "ipa": "/ˈkæməl/",
-        "meaning": "n. 骆驼",
+        "word": "prey",
+        "ipa": "/preɪ/",
+        "meaning": "n. 猎物；被捕食的动物　v. 捕食",
         "lesson": 4
       },
       {
-        "word": "panda",
-        "ipa": "/ˈpændə/",
-        "meaning": "n. 熊猫",
-        "lesson": 4
-      },
-      {
-        "word": "elephant",
-        "ipa": "/ˈelɪfənt/",
-        "meaning": "n. 象",
-        "lesson": 4
-      },
-      {
-        "word": "trunk",
-        "ipa": "/trʌŋk/",
-        "meaning": "n. 象鼻；树干",
-        "lesson": 4
-      },
-      {
-        "word": "ivory",
-        "ipa": "/ˈaɪvəri/",
-        "meaning": "n. 象牙",
-        "lesson": 4
-      },
-      {
-        "word": "horn",
-        "ipa": "/hɔːn/",
-        "meaning": "n. 动物的角；号角",
-        "lesson": 4
-      },
-      {
-        "word": "bear",
-        "ipa": "/beə/",
-        "meaning": "n. 熊",
-        "lesson": 4
-      },
-      {
-        "word": "wolf",
-        "ipa": "/wʊlf/",
-        "meaning": "n. 狼",
-        "lesson": 4
-      },
-      {
-        "word": "fox",
-        "ipa": "/fɒks/",
-        "meaning": "n. 狐狸",
-        "lesson": 4
-      },
-      {
-        "word": "dragon",
-        "ipa": "/ˈdræɡən/",
-        "meaning": "n. 龙；传说中的龙形生物",
+        "word": "predator",
+        "ipa": "/ˈpredətə/",
+        "meaning": "n. 捕食者；掠夺者",
         "lesson": 4
       }
     ]
   },
   {
-    "title": "A Morning on the Farm",
-    "zhTitle": "农场的一个早晨",
+    "label": "追踪与救助",
+    "title": "Following the Signs",
+    "zhTitle": "循着痕迹寻找",
     "paragraphs": [
       {
-        "en": "We reached the farm just after breakfast. A small herd of [[cattle]] stood in a field, and a young [[calf]] stayed close to its mother. The farmer asked us to remain behind the fence. A large [[bull]] was resting nearby, and even familiar farm animals needed space and respect.",
-        "zh": "早餐后不久，我们来到了农场。一小群牛站在田野里，一头小牛紧紧跟着母亲。农场主让我们待在围栏外。一头高大的公牛正在附近休息，即使是常见的农场动物，也需要自己的空间和人们的尊重。"
+        "en": "After a storm, a rescue team tried to [[track]] an injured fox near a village. A muddy print helped them [[trace]] its route towards an empty shed. The animal appeared to be a [[victim]] of a damaged wire fence. The team recorded what they found before deciding how to approach it.",
+        "zh": "暴风雨过后，一支救助队试图追踪村庄附近一只受伤的狐狸。一枚泥地上的脚印帮助他们查出了它通往一间空棚屋的路线。它似乎是损坏的铁丝围栏的受害者。团队先记录发现的情况，再决定如何靠近它。"
       },
       {
-        "en": "Inside the visitor center, we learned about working animals. An old photograph showed an [[ox]] pulling a cart, while a film showed a water [[buffalo]] helping a farmer. Outside, a [[horse]] ate hay beside the stable. A [[donkey]] lifted its long ears when it heard us approaching the gate.",
-        "zh": "在游客中心，我们了解了帮助人类劳动的动物。一张老照片展示了一头拉车的牛，一段影片则展示了一头水牛协助农民劳动。外面，一匹马在马厩旁吃干草。一头驴听到我们走近门口，便竖起了长长的耳朵。"
+        "en": "The fox looked [[vulnerable]], but it still became [[defensive]] when someone moved closer. Fear and pain could explain its behaviour. The volunteers gave the trained staff space to work. At the rescue centre, it would [[undergo]] an examination before the team made further decisions about its care.",
+        "zh": "这只狐狸看起来很脆弱，但有人靠近时，它仍然表现得十分戒备。恐惧和疼痛可以解释这种行为。志愿者为受过训练的工作人员留出了操作空间。到了救助中心，它会先接受检查，团队再决定后续如何照料它。"
       },
       {
-        "en": "The children especially liked the youngest animals. A [[lamb]] ran after a sheep, and a playful [[pup]] rolled onto its back beside the farmhouse. The farmer explained that a baby bear is called a [[cub]]. We would only see that animal in the wildlife film, not among the farm's residents.",
-        "zh": "孩子们尤其喜欢幼小的动物。一只小羊跟在一只绵羊后面奔跑，一只爱玩的小狗在农舍旁翻身，肚皮朝上躺着。农场主解释说，英语里幼熊叫作 cub。我们只能在野生动物影片中看到幼熊，农场里并没有饲养这种动物。"
+        "en": "For a short time, the fox would be a [[captive]] animal, unable to leave its enclosure freely. The staff wanted it to [[suffer]] as little stress as possible, so they limited unnecessary contact. The aim was recovery and, if its condition allowed, a return to the wild. Keeping it permanently was not the automatic answer.",
+        "zh": "在一段短暂的时间里，这只狐狸将处于圈养状态，无法自由离开围栏。工作人员希望它尽可能少地承受压力，因此减少了不必要的接触。目标是让它康复，并在身体条件允许时回到野外。永久留下它，并不是理所当然的答案。"
       },
       {
-        "en": "Before leaving, we watched a [[zebra]] running across an African grassland on the screen. It looked a little like the horse outside, but it was a wild animal. The visit taught us more than animal names: different animals have different needs, and looking similar does not mean living the same way.",
-        "zh": "离开前，我们在屏幕上看了一只奔跑在非洲草原上的斑马。它看起来有点像外面的那匹马，但它是野生动物。这次参观让我们学到的不只是动物名称：不同动物有不同的需求，外表相似并不意味着生活方式相同。"
+        "en": "At a village meeting, someone suggested that they should [[exterminate]] every fox in the area. Others questioned whether that would solve the actual problem. They discussed repairing fences and securing food waste instead. Following the evidence had led us from one animal's injury to a wider question: how could neighbours prevent the next conflict?",
+        "zh": "在村里的会议上，有人建议消灭这一带所有的狐狸。其他人质疑，这样做是否真能解决问题。他们转而讨论修好围栏、妥善存放厨余垃圾。顺着证据，我们从一只动物的伤情走向了一个更大的问题：居民怎样才能避免下一次冲突？"
       }
     ],
-    "label": "农场生活",
     "words": [
       {
-        "word": "cattle",
-        "ipa": "/ˈkætl/",
-        "meaning": "n. 牛（集合名词）",
+        "word": "track",
+        "ipa": "/træk/",
+        "meaning": "v. 追踪　n. 足迹；轨道",
         "lesson": 5
       },
       {
-        "word": "ox",
-        "ipa": "/ɒks/",
-        "meaning": "n. 耕牛；阉公牛",
+        "word": "trace",
+        "ipa": "/treɪs/",
+        "meaning": "v. 查出；追溯　n. 痕迹；少许",
         "lesson": 5
       },
       {
-        "word": "buffalo",
-        "ipa": "/ˈbʌfələʊ/",
-        "meaning": "n. 水牛；野牛",
+        "word": "victim",
+        "ipa": "/ˈvɪktɪm/",
+        "meaning": "n. 受害者；牺牲者",
         "lesson": 5
       },
       {
-        "word": "bull",
-        "ipa": "/bʊl/",
-        "meaning": "n. 公牛",
+        "word": "captive",
+        "ipa": "/ˈkæptɪv/",
+        "meaning": "adj. 被关押的；圈养的　n. 俘虏",
         "lesson": 5
       },
       {
-        "word": "horse",
-        "ipa": "/hɔːs/",
-        "meaning": "n. 马",
+        "word": "defensive",
+        "ipa": "/dɪˈfensɪv/",
+        "meaning": "adj. 防御的；戒备的",
         "lesson": 5
       },
       {
-        "word": "donkey",
-        "ipa": "/ˈdɒŋki/",
-        "meaning": "n. 驴",
+        "word": "undergo",
+        "ipa": "/ˌʌndəˈɡəʊ/",
+        "meaning": "v. 经历；经受",
         "lesson": 5
       },
       {
-        "word": "zebra",
-        "ipa": "/ˈzebrə/",
-        "meaning": "n. 斑马",
+        "word": "suffer",
+        "ipa": "/ˈsʌfə/",
+        "meaning": "v. 受苦；遭受；患病",
         "lesson": 5
       },
       {
-        "word": "calf",
-        "ipa": "/kɑːf/",
-        "meaning": "n. 小牛；某些大型哺乳动物的幼崽",
+        "word": "vulnerable",
+        "ipa": "/ˈvʌlnərəbl/",
+        "meaning": "adj. 易受伤害的；脆弱的",
         "lesson": 5
       },
       {
-        "word": "lamb",
-        "ipa": "/læm/",
-        "meaning": "n. 羔羊",
-        "lesson": 5
-      },
-      {
-        "word": "pup",
-        "ipa": "/pʌp/",
-        "meaning": "n. 幼犬；海豹等动物的幼崽",
-        "lesson": 5
-      },
-      {
-        "word": "cub",
-        "ipa": "/kʌb/",
-        "meaning": "n. 熊、狮等动物的幼崽",
+        "word": "exterminate",
+        "ipa": "/ɪkˈstɜːmɪneɪt/",
+        "meaning": "v. 消灭；根除",
         "lesson": 5
       }
     ]

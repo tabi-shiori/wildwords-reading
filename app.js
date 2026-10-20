@@ -1,10 +1,10 @@
-import { lessons } from './data.js';
+import { lessons } from './data.js?v=p040-043-20261020';
 import { segments, plainText, buildQuiz } from './core.js';
 
 const $ = id => document.getElementById(id);
 const allWords = lessons.flatMap(lesson => lesson.words);
 const dictionary = new Map(allWords.map(item => [item.word, item]));
-const storageKey = 'fieldnotes-wildwords-v1';
+const storageKey = 'fieldnotes-wildwords-p040-043-v1';
 const stored = localStorage.getItem(storageKey);
 const state = stored === null
   ? { lesson: 0, mode: 'highlight', translations: false, mastered: [] }
@@ -260,7 +260,7 @@ function renderQuiz() {
     return;
   }
   if (quiz.questions.length === 0) {
-    card.append(el('p', 'empty-state', '全部 90 个词都已标记掌握。选择「全部 90 词」再复习一次吧。'));
+    card.append(el('p', 'empty-state', `全部 ${allWords.length} 个词都已标记掌握。选择「全部 ${allWords.length} 词」再复习一次吧。`));
     return;
   }
   if (quiz.index === quiz.questions.length) {
