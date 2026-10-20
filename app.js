@@ -1,15 +1,23 @@
 import { lessons } from './data.js?v=p040-043-20261020';
 import { segments, plainText, buildQuiz } from './core.js';
+import { migrateLegacy, validateProgress, mergeProgress, serializeProgress, readStudyState, recordChanges } from './progress.js?v=github-sync-1';
+import { GitHubSync } from './github-sync.js?v=github-sync-1';
 
 const $ = id => document.getElementById(id);
 const allWords = lessons.flatMap(lesson => lesson.words);
 const dictionary = new Map(allWords.map(item => [item.word, item]));
 const storageKey = 'fieldnotes-wildwords-p040-043-v1';
-const stored = localStorage.getItem(storageKey);
-const state = stored === null
-  ? { lesson: 0, mode: 'highlight', translations: false, mastered: [] }
-  : JSON.parse(stored);
+const progressKey = 'fieldnotes-github-progress-v1';
+const tokenKey = 'fieldnotes-github-session-token';
+const wordNames = allWords.map(item => item.word);
+const stored = localStorage.getItem(progressKey);
+const legacy = localStorage.getItem(storageKey);
+let progress = stored === null ? migrateLegacy(legacy === null ? null : JSON.parse(legacy), wordNames) : validateProgress(JSON.parse(stored));
+const device = crypto.randomUUID();
+const state = readStudyState(progress, wordNames);
 const mastered = new Set(state.mastered);
+let lastState = { ...state, mastered: [...state.mastered] };
+let cloud;
 let activeWord = null;
 let quiz = null;
 let reading = false;
@@ -19,7 +27,30 @@ const audioIcon = '<svg viewBox="0 0 20 20" width="16" height="16" fill="none" s
 
 function save() {
   state.mastered = [...mastered];
+  progress = recordChanges(progress, lastState, state, device);
+  lastState = { ...state, mastered: [...state.mastered] };
+  localStorage.setItem(progressKey, serializeProgress(progress));
   localStorage.setItem(storageKey, JSON.stringify(state));
+  cloud?.changed();
+}
+
+function mergeDocument(remote) {
+  const merged = mergeProgress(progress, remote);
+  if (serializeProgress(merged) === serializeProgress(progress)) return;
+  progress = merged;
+  localStorage.setItem(progressKey, serializeProgress(progress));
+  const next = readStudyState(progress, wordNames);
+  const lessonChanged = next.lesson !== state.lesson;
+  Object.assign(state, next);
+  mastered.clear(); state.mastered.forEach(word => mastered.add(word));
+  lastState = { ...state, mastered: [...state.mastered] };
+  localStorage.setItem(storageKey, JSON.stringify(state));
+  if (lessonChanged) {
+    stopReading();
+    if ($('quizScope').value === 'lesson') { quiz = null; renderQuiz(); }
+  }
+  renderLesson();
+  if (activeWord !== null) updateDialogMastery();
 }
 
 function el(tag, className, text) {
@@ -349,3 +380,53 @@ if (!audioAvailable) {
 window.addEventListener('pagehide', stopReading);
 renderLesson();
 renderQuiz();
+
+cloud = new GitHubSync({ getDocument: () => progress, mergeDocument, status: info => {
+  $('syncStatus').textContent = info.message;
+  $('syncStatus').dataset.status = info.kind;
+  $('syncNow').hidden = !info.connected;
+  $('syncNow').disabled = info.kind === 'syncing';
+  $('disconnectGitHub').hidden = !info.connected;
+  $('openSync').textContent = info.connected ? '连接设置' : '连接 GitHub';
+  if (!info.connected) sessionStorage.removeItem(tokenKey);
+} });
+
+$('openSync').addEventListener('click', () => {
+  $('syncError').textContent = '';
+  $('syncDialog').showModal();
+});
+$('closeSync').addEventListener('click', () => $('syncDialog').close());
+$('syncDialog').addEventListener('close', () => { $('githubToken').value = ''; });
+$('syncForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const token = $('githubToken').value.trim();
+  if (!/^github_pat_[A-Za-z0-9_]+$/.test(token)) {
+    $('syncError').textContent = '请填入 GitHub fine-grained token（以 github_pat_ 开头）。';
+    return;
+  }
+  $('githubToken').value = '';
+  $('connectGitHub').disabled = true;
+  $('syncError').textContent = '正在验证私有仓库并合并进度…';
+  sessionStorage.removeItem(tokenKey);
+  const success = await cloud.connect(token);
+  $('connectGitHub').disabled = false;
+  if (success) {
+    sessionStorage.setItem(tokenKey, token);
+    $('syncDialog').close();
+  } else $('syncError').textContent = $('syncStatus').textContent;
+});
+$('syncNow').addEventListener('click', () => cloud.sync());
+$('disconnectGitHub').addEventListener('click', () => {
+  cloud.disconnect(); sessionStorage.removeItem(tokenKey);
+});
+window.addEventListener('storage', event => {
+  if (event.key !== progressKey || !event.newValue) return;
+  try { mergeDocument(validateProgress(JSON.parse(event.newValue))); cloud.changed(); }
+  catch { $('syncStatus').textContent = '另一个标签页的进度格式异常，请检查后重试。'; }
+});
+window.addEventListener('online', () => cloud.sync());
+window.addEventListener('focus', () => { if (!document.hidden) cloud.sync(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) cloud.sync(); });
+setInterval(() => { if (!document.hidden && cloud.connected) cloud.sync(); }, 60000);
+const sessionToken = sessionStorage.getItem(tokenKey);
+if (sessionToken) cloud.connect(sessionToken);

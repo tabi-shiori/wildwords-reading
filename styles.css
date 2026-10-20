@@ -53,6 +53,32 @@ h1 { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 42px; li
 .progress-track { grid-column: 1 / -1; height: 4px; margin-top: 11px; border-radius: 9px; overflow: hidden; background: #e0e7d8; }
 #progressFill { height: 100%; background: #678762; border-radius: inherit; transition: width .45s ease; }
 
+.sync-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 20px; margin: 0 0 27px; border: 1px solid var(--line); border-radius: 10px; background: #eaf0e3; }
+.sync-label { font-size: 11px; font-weight: 650; letter-spacing: .1em; color: var(--forest); }
+#syncStatus { margin: 5px 0 0; font-size: 12px; line-height: 1.7; color: #607259; overflow-wrap: anywhere; }
+#syncStatus[data-status="error"] { color: #92502e; }
+#syncStatus[data-status="synced"] { color: var(--forest-dark); }
+.sync-actions { display: flex; gap: 7px; flex-shrink: 0; flex-wrap: wrap; }
+.sync-actions button { font-size: 12px; }
+#syncDialog { max-width: 560px; width: calc(100% - 32px); padding: 28px; color: var(--body); border: 1px solid var(--line); border-radius: 16px; background: var(--paper); max-height: calc(100dvh - 40px); overflow-y: auto; }
+#syncDialog::backdrop { background: #20372b66; backdrop-filter: blur(3px); }
+#syncDialog h2 { font-size: 26px; margin: 25px 0 18px; font-weight: 600; }
+#syncDialog p, .sync-steps { font-size: 13px; line-height: 1.8; }
+.sync-steps { padding-left: 21px; margin: 20px 0; }
+.sync-steps li { padding: 0 0 9px 3px; }
+#syncForm { border-top: 1px solid var(--line); padding-top: 19px; }
+#syncForm label { display: block; font-size: 13px; margin-bottom: 9px; font-weight: 600; }
+#githubToken { width: 100%; border: 1px solid #b4c1ac; border-radius: 7px; padding: 12px; background: #fff; color: var(--ink); }
+#syncDialog .sync-help { font-size: 12px; color: #738171; }
+#syncError { color: #92502e; }
+#syncError:empty { display: none; }
+#connectGitHub { background: var(--forest); color: white; width: 100%; padding: 12px; margin-top: 4px; }
+@media (max-width: 600px) {
+  .sync-bar { flex-direction: column; align-items: stretch; padding: 16px; gap: 12px; }
+  .sync-actions { justify-content: flex-start; }
+  #syncDialog { padding: 22px; }
+}
+
 .toolbar { display: flex; flex-direction: column; gap: 18px; margin-bottom: 18px; }
 .tabs { display: flex; gap: 9px; flex-wrap: wrap; }
 .tab { min-height: 43px; padding: 10px 17px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; border-color: #e1e7da; background: #fffef9; border-radius: 9px; }
