@@ -2,6 +2,7 @@
 const {words, lessons} = window.COURSE;
 const byId = new Map(words.map(w => [w.id, w]));
 const lessonById = new Map(lessons.map(l => [l.id, l]));
+const legacyLessonIds = new Map(lessons.flatMap(l => l.legacyIds.map(id => [id, l.id])));
 const KEY = 'fieldnotes-2026-v2';
 const stored = localStorage.getItem(KEY);
 const state = stored ? JSON.parse(stored) : {version:2, mastered:[], saved:[], read:[], history:[], translation:false, voice:'', speed:0.9};
@@ -23,8 +24,11 @@ function renderProgress() {
   document.querySelector('#mastered-count').textContent = state.mastered.length + ' / ' + words.length;
   document.querySelector('#mastered-bar').value = state.mastered.length;
 }
+function isLessonRead(id) {
+ return state.read.includes(id);
+}
 function renderSidebar() {
-  document.querySelector('#lesson-list').innerHTML = lessons.map((l,i) => '<button class="lesson-link '+(l.id===current && view==='read'?'active':'')+'" data-lesson="'+l.id+'" '+(l.id===current && view==='read'?'aria-current="page"':'')+'><span class="lesson-num">'+String(i+1).padStart(2,'0')+'</span><span><strong>'+l.label+'</strong><small>'+l.words.length+' 个词 · 约 2 分钟</small></span><span class="check">'+(state.read.includes(l.id)?'✓':'')+'</span></button>').join('');
+  document.querySelector('#lesson-list').innerHTML = lessons.map((l,i) => '<button class="lesson-link '+(l.id===current && view==='read'?'active':'')+'" data-lesson="'+l.id+'" '+(l.id===current && view==='read'?'aria-current="page"':'')+'><span class="lesson-num">'+String(i+1).padStart(2,'0')+'</span><span><strong>'+l.label+'</strong><small>'+l.words.length+' 个词 · 约 3 分钟</small></span><span class="check">'+(isLessonRead(l.id)?'✓':'')+'</span></button>').join('');
   renderProgress();
 }
 function art(type) {
@@ -56,7 +60,7 @@ function annotate(text, lesson) {
 function renderRead() {
  const l = lessonById.get(current), i = lessons.indexOf(l);
  const count = l.paragraphs.map(p=>p.en).join(' ').split(/\s+/).length;
- main.innerHTML = '<div class="crumb"><span>阅读 / '+l.label+'</span><span>FIELD NOTE '+String(i+1).padStart(2,'0')+' / 09</span></div><article class="reading"><div class="article-head"><div><span class="badge">● 真实案例 · '+l.year+'</span><h2>'+l.title+'</h2><p class="zh-title">'+l.zhTitle+'</p><div class="article-meta"><span>约 2 分钟阅读</span><span>'+count+' 词</span><span>'+l.words.length+' 个目标词</span><span>B1–B2</span></div></div><div class="art">'+art(l.art)+'</div></div><div class="toolbar"><button class="btn primary" data-action="read-aloud">▶ 朗读全文</button><button class="btn" data-action="stop-audio" aria-label="停止朗读">■ 停止</button><button class="btn toggle" aria-pressed="'+state.translation+'" data-action="translation">译 显示译文</button><button class="btn toggle" aria-pressed="'+hiddenWords+'" data-action="cloze">◌ 遮挡自测</button><details class="voice-settings"><summary>语音设置</summary><div><select id="voice" aria-label="朗读语音"></select><select id="speed" aria-label="朗读速度"><option value="0.75">0.75× 慢速</option><option value="0.9">0.9×</option><option value="1">1× 正常</option></select></div></details></div><p class="tip">'+(hiddenWords?'根据上下文回忆空白处，点开即可核对单词。':'点绿色单词，查看音标、中文释义和文中例句。')+'</p><div class="article-body '+(hiddenWords?'cloze':'')+'">'+l.paragraphs.map(p=>'<section class="paragraph"><p class="en" lang="en">'+annotate(p.en,l)+'</p><p class="zh '+(state.translation?'':'hidden')+'">'+p.zh+'</p></section>').join('')+'</div><div class="source">事实来源：<a target="_blank" rel="noopener" href="'+l.source.url+'">'+l.source.name+' ↗</a><span>基于真实资料编写的学习短文，非媒体原文转载；教学算例已在文中注明。</span></div><div class="article-bottom"><button class="btn '+(state.read.includes(l.id)?'reading-done':'')+'" data-action="mark-read">'+(state.read.includes(l.id)?'✓ 已完成阅读':'✓ 读完了，记一笔')+'</button><button class="btn ghost" data-lesson="'+lessons[(i+1)%lessons.length].id+'">'+(i===lessons.length-1?'回到第一篇':'下一篇')+' →</button></div></article><div class="below-head"><h3>把这些词带走</h3><span>'+l.words.length+' 个目标词 · 点开词卡</span></div><div class="word-chips">'+words.filter(w=>w.lesson===l.id).map(w=>'<button class="chip" data-word="'+w.id+'">'+w.word+'<small>'+(state.mastered.includes(w.id)?'✓ 已掌握':w.senses.reduce((sum,group)=>sum+group.definitions.length,0)+' 个义项')+'</small></button>').join('')+'</div><section class="lesson-review" aria-labelledby="lesson-review-title"><div class="below-head"><h3 id="lesson-review-title">本篇词汇复习</h3><span>英汉双向 · 四选一</span></div><div id="lesson-review-content"></div></section><section class="quiz"><h3>读懂了吗？</h3><p class="muted">仅根据短文判断。选完三题后保存本次成绩。</p><div id="quiz-questions"></div><button class="btn primary" data-action="submit-quiz">保存测验成绩</button><button class="btn ghost" data-action="restart-quiz">重新作答</button><p id="quiz-result" class="quiz-result" role="status"></p></section>';
+ main.innerHTML = '<div class="crumb"><span>阅读 / '+l.label+'</span><span>FIELD NOTE '+String(i+1).padStart(2,'0')+' / '+String(lessons.length).padStart(2,'0')+'</span></div><article class="reading"><div class="article-head"><div><span class="badge">● 真实案例 · '+l.year+'</span><h2>'+l.title+'</h2><p class="zh-title">'+l.zhTitle+'</p><div class="article-meta"><span>约 3 分钟阅读</span><span>'+count+' 词</span><span>'+l.words.length+' 个目标词</span><span>B1–B2</span></div></div><div class="art">'+art(l.art)+'</div></div><div class="toolbar"><button class="btn primary" data-action="read-aloud">▶ 朗读全文</button><button class="btn" data-action="stop-audio" aria-label="停止朗读">■ 停止</button><button class="btn toggle" aria-pressed="'+state.translation+'" data-action="translation">译 显示译文</button><button class="btn toggle" aria-pressed="'+hiddenWords+'" data-action="cloze">◌ 遮挡自测</button><details class="voice-settings"><summary>语音设置</summary><div><select id="voice" aria-label="朗读语音"></select><select id="speed" aria-label="朗读速度"><option value="0.75">0.75× 慢速</option><option value="0.9">0.9×</option><option value="1">1× 正常</option></select></div></details></div><p class="tip">'+(hiddenWords?'根据上下文回忆空白处，点开即可核对单词。':'点绿色单词，查看音标、中文释义和文中例句。')+'</p><div class="article-body '+(hiddenWords?'cloze':'')+'">'+l.paragraphs.map(p=>'<section class="paragraph"><p class="en" lang="en">'+annotate(p.en,l)+'</p><p class="zh '+(state.translation?'':'hidden')+'">'+p.zh+'</p></section>').join('')+'</div><div class="source">事实来源：'+l.sources.map(source=>'<a target="_blank" rel="noopener" href="'+source.url+'">'+source.name+' ↗</a>').join(' · ')+'<span>基于真实资料编写的学习短文，非媒体原文转载；教学算例已在文中注明。</span></div><div class="article-bottom"><button class="btn '+(isLessonRead(l.id)?'reading-done':'')+'" data-action="mark-read">'+(isLessonRead(l.id)?'✓ 已完成阅读':'✓ 读完了，记一笔')+'</button><button class="btn ghost" data-lesson="'+lessons[(i+1)%lessons.length].id+'">'+(i===lessons.length-1?'回到第一篇':'下一篇')+' →</button></div></article><div class="below-head"><h3>把这些词带走</h3><span>'+l.words.length+' 个目标词 · 点开词卡</span></div><div class="word-chips">'+words.filter(w=>w.lesson===l.id).map(w=>'<button class="chip" data-word="'+w.id+'">'+w.word+'<small>'+(state.mastered.includes(w.id)?'✓ 已掌握':w.senses.reduce((sum,group)=>sum+group.definitions.length,0)+' 个义项')+'</small></button>').join('')+'</div><section class="lesson-review" aria-labelledby="lesson-review-title"><div class="below-head"><h3 id="lesson-review-title">本篇词汇复习</h3><span>英汉双向 · 四选一</span></div><div id="lesson-review-content"></div></section><section class="quiz"><h3>读懂了吗？</h3><p class="muted">仅根据短文判断。选完三题后保存本次成绩。</p><div id="quiz-questions"></div><button class="btn primary" data-action="submit-quiz">保存测验成绩</button><button class="btn ghost" data-action="restart-quiz">重新作答</button><p id="quiz-result" class="quiz-result" role="status"></p></section>';
  renderQuiz();
  renderLessonReview();
  renderVoices();
@@ -104,7 +108,7 @@ function renderLessonReview() {
  document.querySelector('#lesson-review-content').innerHTML='<div class="review-box inline-review"><div class="review-top"><span>读完，就记一下</span><span>仅本篇 '+l.words.length+' 词</span></div><p class="muted">四选一，完整显示各词常见义项；答题后结合原句记忆。</p>'+modeControls()+'<button class="btn primary" data-start="lesson">开始本篇复习 · '+l.words.length+' 词 →</button></div>';
 }
 function renderReview() {
- main.innerHTML='<span class="eyebrow">ALL WORDS · ONE PLACE</span><h2 class="page-title">全部词汇，一起复习。</h2><p class="page-lead">覆盖全部 9 篇的 75 个词。四选一，可英选汉、汉选英，或双向交替。</p><div id="review-content"></div>';
+ main.innerHTML='<span class="eyebrow">ALL WORDS · ONE PLACE</span><h2 class="page-title">全部词汇，一起复习。</h2><p class="page-lead">覆盖全部 '+lessons.length+' 篇的 '+words.length+' 个词。四选一，可英选汉、汉选英，或双向交替。</p><div id="review-content"></div>';
  renderReviewHome();
 }
 function renderReviewHome() {
@@ -153,7 +157,7 @@ function gradeWord(choice) {
 }
 function renderHistory() {
  const dates=new Set(state.history.map(h=>new Date(h.at).toLocaleDateString('zh-CN')));
- main.innerHTML='<span class="eyebrow">YOUR READING TRAIL</span><h2 class="page-title">每一点进步，都算数。</h2><p class="page-lead">学习记录保存在当前浏览器。换设备时，可导出进度，再在新设备导入。</p><div class="stats"><div class="stat"><strong>'+state.mastered.length+'<small> / 75</small></strong><small>已掌握词汇</small></div><div class="stat"><strong>'+state.read.length+'<small> / 9</small></strong><small>已读短文</small></div><div class="stat"><strong>'+dates.size+'</strong><small>有记录的学习日</small></div></div><div class="data-tools"><button class="btn primary" data-action="export">↓ 导出学习进度</button><button class="btn" data-action="import">↑ 导入并合并进度</button></div><p class="muted">导出文件只包含本版的学习标记和成绩，不包含账号或密钥。导入会合并两份记录。</p><div class="below-head"><h3>最近的足迹</h3><span>最多保留 100 条</span></div><div class="history-list">'+(state.history.length?state.history.map(h=>'<div class="history-row"><span>'+escapeHTML(h.label)+(h.type==='read'?' · 已读':' · '+h.score+' / '+h.total)+'</span><small>'+new Date(h.at).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+'</small></div>').join(''):'<div class="empty">还没有记录。读完一篇短文，或者完成一组小测，从这里开始积累。</div>')+'</div>';
+ main.innerHTML='<span class="eyebrow">YOUR READING TRAIL</span><h2 class="page-title">每一点进步，都算数。</h2><p class="page-lead">学习记录保存在当前浏览器。换设备时，可导出进度，再在新设备导入。</p><div class="stats"><div class="stat"><strong>'+state.mastered.length+'<small> / 75</small></strong><small>已掌握词汇</small></div><div class="stat"><strong>'+lessons.filter(l=>isLessonRead(l.id)).length+'<small> / '+lessons.length+'</small></strong><small>已读短文</small></div><div class="stat"><strong>'+dates.size+'</strong><small>有记录的学习日</small></div></div><div class="data-tools"><button class="btn primary" data-action="export">↓ 导出学习进度</button><button class="btn" data-action="import">↑ 导入并合并进度</button></div><p class="muted">导出文件只包含本版的学习标记和成绩，不包含账号或密钥。导入会合并两份记录。</p><div class="below-head"><h3>最近的足迹</h3><span>最多保留 100 条</span></div><div class="history-list">'+(state.history.length?state.history.map(h=>'<div class="history-row"><span>'+escapeHTML(h.label)+(h.type==='read'?' · 已读':' · '+h.score+' / '+h.total)+'</span><small>'+new Date(h.at).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+'</small></div>').join(''):'<div class="empty">还没有记录。读完一篇短文，或者完成一组小测，从这里开始积累。</div>')+'</div>';
 }
 function stopAudio() { if('speechSynthesis' in window)speechSynthesis.cancel(); utterance=null; const b=document.querySelector('[data-action="read-aloud"]');if(b)b.textContent='▶ 朗读全文'; }
 function renderVoices() {
@@ -193,7 +197,7 @@ async function importProgress(file) {
  try {
  const incoming=JSON.parse(await file.text());
  if(incoming.app!=='fieldnotes'||incoming.version!==2||!['mastered','saved','read','history'].every(k=>Array.isArray(incoming[k])))throw new Error('请选择本版导出的 FIELDNOTES 进度文件。');
- if(!incoming.mastered.every(id=>byId.has(id))||!incoming.saved.every(id=>byId.has(id))||!incoming.read.every(id=>lessonById.has(id)))throw new Error('文件含有不属于本课程的词汇或阅读记录。');
+ if(!incoming.mastered.every(id=>byId.has(id))||!incoming.saved.every(id=>byId.has(id))||!incoming.read.every(id=>lessonById.has(id)||legacyLessonIds.has(id)))throw new Error('文件含有不属于本课程的词汇或阅读记录。');
  if(!incoming.history.every(h=>typeof h.label==='string'&&['read','quiz','spelling','vocabulary'].includes(h.type)&&Number.isFinite(Date.parse(h.at))&&Number.isFinite(h.score)&&Number.isFinite(h.total)))throw new Error('成绩记录格式不正确。');
  for(const k of ['mastered','saved','read'])state[k]=[...new Set([...state[k],...incoming[k]])];
  state.history=[...new Map([...state.history,...incoming.history].map(h=>[h.at+'|'+h.type+'|'+h.label,h])).values()].sort((a,b)=>new Date(b.at)-new Date(a.at)).slice(0,100);
@@ -217,7 +221,7 @@ document.addEventListener('click',event=>{
  if(action==='cloze'){hiddenWords=!hiddenWords;document.querySelector('.article-body').classList.toggle('cloze',hiddenWords);button.setAttribute('aria-pressed',String(hiddenWords));document.querySelector('.tip').textContent=hiddenWords?'根据上下文回忆空白处，点开即可核对单词。':'点绿色单词，查看音标、中文释义和文中例句。';return;}
  if(action==='read-aloud'){speak(lessonById.get(current).paragraphs.map(p=>p.en).join('\n\n'));return;}
  if(action==='stop-audio'){stopAudio();return;}
- if(action==='mark-read'){if(!state.read.includes(current)){state.read.push(current);record('read',lessonById.get(current).zhTitle,0,0);renderSidebar();button.textContent='✓ 已完成阅读';button.classList.add('reading-done');notify('已记录这篇阅读。');}return;}
+ if(action==='mark-read'){if(!isLessonRead(current)){state.read.push(current);record('read',lessonById.get(current).zhTitle,0,0);renderSidebar();button.textContent='✓ 已完成阅读';button.classList.add('reading-done');notify('已记录这篇阅读。');}return;}
  if(action==='submit-quiz'){
  const l=lessonById.get(current), answers=quizAnswers[current]||{};
  if(Object.keys(answers).length<l.questions.length){document.querySelector('#quiz-result').textContent='请先完成全部三题。';return;}
@@ -253,9 +257,12 @@ function readRoute() {
  const parts=location.hash.slice(1).split('/');
  if(parts[0]&& !['read','words','review','progress'].includes(parts[0])){main.innerHTML='<div class="empty">这个页面不存在。<a href="#read">回到阅读首页</a></div>';return;}
  view=parts[0]||'read';
- if(parts[1]&&!lessonById.has(parts[1])){main.innerHTML='<div class="empty">找不到这篇短文。<a href="#read">回到阅读首页</a></div>';return;}
- if(parts[1])current=parts[1];
+ const lessonId=legacyLessonIds.has(parts[1])?legacyLessonIds.get(parts[1]):parts[1];
+ if(lessonId&&!lessonById.has(lessonId)){main.innerHTML='<div class="empty">找不到这篇短文。<a href="#read">回到阅读首页</a></div>';return;}
+ if(lessonId)current=lessonId;
+ if(legacyLessonIds.has(parts[1]))history.replaceState(null,'','#'+view+'/'+lessonId);
  render();
 }
 window.addEventListener('hashchange',()=>{stopAudio();readRoute();});
 readRoute();
+
