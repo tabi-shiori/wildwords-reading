@@ -31,3 +31,8 @@
 - A Small Cube in a Big Universe — NASA · CubeSat Launch Initiative: https://www.nasa.gov/cubesat-launch-initiative-introduction/
 - What Doubling Really Means — Intel · Moore's Law: https://www.intel.com/content/www/us/en/newsroom/resources/moores-law.html
 - The Chemistry in Your Pocket — Nobel Prize · Lithium-ion batteries: https://www.nobelprize.org/prizes/chemistry/2019/popular-information/
+
+
+## 多义词释义（2026-11-08）
+
+75 个词条按词性逐项展示常见义项，词卡另列本文用法与原句。复习的汉语提示和选项完整展示释义组；提示中的目标英文会遮挡，避免直接透露答案。多义词选项在手机上使用单列，正文不截断。词卡提供 Cambridge Dictionary 查阅链接。

@@ -127,3 +127,46 @@ dialog{border:1px solid var(--line);border-radius:14px;padding:0;max-width:420px
  .footer{margin:0 10px;font-size:8px;padding:12px 0}
 }
 @media print{.lesson-review{display:none!important}}
+
+/* Multi-sense vocabulary, with every definition visible. */
+.word-meanings{margin:22px 0}
+.word-meanings h3,.answer-meanings h4{font-size:12px;color:var(--soft);font-weight:500;margin:0 0 13px}
+.sense-list,.sense-group,.sense-items{display:block}
+.sense-group{margin:10px 0}
+.sense-pos{display:block;color:var(--green);font-size:11px;font-weight:650;margin-bottom:5px}
+.sense-item{display:flex;align-items:baseline;gap:7px;font:13px/1.8 "Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;white-space:normal;overflow-wrap:anywhere}
+.sense-item+.sense-item{margin-top:4px}
+.sense-number{flex:0 0 14px;color:var(--soft);font-size:10px}
+.context-use{padding:12px 14px;background:var(--mint);border-radius:7px;margin:16px 0}
+.context-use strong{font-size:11px;color:var(--green);font-weight:600}
+.context-use p{font-size:13px;line-height:1.7;margin:5px 0 0}
+.word-source a{display:inline-block;margin-top:7px}
+.vocab-card{align-self:start}
+.vocab-card>.sense-list{margin-top:12px}
+.vocab-card .sense-item{font-size:12px}
+.review-options.meaning-options{grid-template-columns:1fr}
+.meaning-options .review-option{align-items:flex-start}
+.meaning-options .review-option>.option-letter{margin-top:7px}
+.meaning-options .sense-group:first-child{margin-top:0}
+.meaning-options .sense-group:last-child{margin-bottom:0}
+.meaning-options .sense-item{font-size:12px;line-height:1.75}
+.review-question.chinese-prompt{font-family:inherit;font-weight:400}
+.chinese-prompt .sense-item{font-size:14px}
+.answer-meanings{padding:16px 0 4px}
+#lesson-review-content,#review-content{scroll-margin-top:12px}
+dialog{max-height:85dvh;overflow-y:auto}
+.dialog-top{position:sticky;top:0;background:var(--paper);z-index:2;padding:5px 0}
+@media(max-width:720px){
+ .word-grid{grid-template-columns:1fr}
+ .word-meanings{margin:17px 0}
+ .word-meanings h3,.answer-meanings h4{font-size:11px;margin-bottom:10px}
+ .word-meanings .sense-item{font-size:13px}
+ .sense-group{margin:9px 0}
+ .sense-item{gap:5px}
+ .context-use{padding:10px 12px;margin:12px 0}
+ .context-use p{font-size:12px}
+ .meaning-options .review-option{padding:11px 9px}
+ .meaning-options .sense-item{font-size:12px}
+ .chinese-prompt .sense-item{font-size:13px}
+ .vocab-card .sense-item{font-size:12px}
+}
