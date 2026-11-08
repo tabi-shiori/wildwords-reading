@@ -1,31 +1,33 @@
-# FIELDNOTES · 生命与生存词汇阅读
+# FIELDNOTES · 英语阅读学习站
 
-6 篇原创双语短文，覆盖用户提供的词书第 040–043 页全部 46 个主词条。
+公开网址：https://tabi-shiori.github.io/wildwords-reading/
 
-## 文章
-- 农场与边界（7 词）
-- 看不见的世界（7 词）
-- 身体如何运转（7 词）
-- 感知与学习（8 词）
-- 昼夜与寒冬（8 词）
-- 追踪与救助（9 词）
+2026-11-08 从零重写。75 个词来自用户提供的第 066–071 页词表；9 篇约 110–125 词的短文基于真实资料编写，每篇注明来源，教学算例单独说明。
 
 ## 功能
-点词释义、英式音标、语境原句、中文译文、单词与全文朗读、中文提示、遮挡自测、掌握标记、词汇搜索和双向选择题。朗读使用设备语音。
 
-## 发布与进度
-GitHub Pages 从 main 分支根目录发布；纯静态网页，无需构建。
+- 阅读：点词、音标、中文释义、文中例句、中英对照、遮挡自测。
+- 朗读：浏览器语音合成；优先选用已安装的 en-GB 语音，可在语音设置里选择。没有可用语音时显示明确提示。
+- 练习：27 道阅读判断题；每组最多 10 词的拼写复习。
+- 记录：掌握标记、复习词、已读短文、成绩，本机保存，JSON 导入合并与导出。
+- 手机适配，保留 Chapter 3 / 4 / 5 / 5B 的入口。
 
-学习进度可同步到 `tabi-shiori/wildwords-progress` 私有仓库中的 `progress.json`。同步已掌握单词（含取消掌握）、阅读位置、阅读模式及译文开关；进行中的小测验不保存。
+## 实现
 
-在网页「连接 GitHub」中使用 fine-grained personal access token：仅选择上述进度仓库，授予 Contents: Read and write，并设置到期时间。令牌仅保留在当前标签页的 sessionStorage，关闭会话需重新连接；不进入进度 JSON、公开代码或 Git 提交。断开按钮会清除此会话的令牌。每台设备都需独立连接。
+首页只加载 index.html、style.v2.css、data.v2.js、app.v2.js、icon.v2.svg。无框架、无构建、无运行时网络请求、无轮询或自动重试。所有更新由用户动作触发。
 
-进度仍会即时保存在本机；页面明确显示未连接、待同步、同步中、已同步和错误状态。初次连接先读取和合并云端数据，修改后防抖上传，返回页面和每分钟可见时重新同步。无变化时不生成提交。上传前检查目标仓库私有性；网络、授权或文件格式异常不会覆盖远端文件。
+旧版文件仍在 Git 历史和仓库中，首页不引用旧脚本。新进度键为 fieldnotes-2026-v2，不改动旧课程的记录。
 
-`progress.js` 按单词和设置字段保存带时间及设备标识的值，保留取消掌握记录，独立修改可合并；同一字段取更新记录。设备时间应保持准确。上传使用 GitHub 文件 SHA；409 冲突会重新拉取、合并并有限重试。未知词集保留。
+由 GitHub Pages 发布 main 分支根目录。
 
-当前 46 词的旧本机进度会自动迁入 `fieldnotes-github-progress-v1` 中的 `p040-043` 词集。旧版 90 词的 `fieldnotes-wildwords-v1` 不改动。历史数据没有时间戳，迁入时不覆盖更晚的云端记录。
+## 内容来源
 
-验证：`node --test sync.test.mjs`，覆盖双设备合并、取消掌握、旧数据迁移、SHA 冲突、同步中修改、权限错误、私有性校验和断开取消。实际账户端到端同步需用户完成一次令牌授权。
-
-2026-10-20 更新词库与配套文章。旧版内容可在 Git 提交历史查看。
+- The Logic Inside Your Laptop — University College Cork · George Boole: https://www.ucc.ie/en/heritage/history/people/ucc-staff/professor-george-boole/
+- Arithmetic Before Calculators — The Open University · Egyptian calculation: https://www.open.edu/openlearn/science-maths-technology/mathematics-statistics/egyptian-mathematics/content-section-1.1.2
+- Why A4 Keeps Its Shape — University of Cambridge · International paper sizes: https://www.cl.cam.ac.uk/~mgk25/iso-paper.html
+- A Chart That Made People Listen — Science Museum · Nightingale and Martineau: https://journal.sciencemuseum.ac.uk/article/nightingale-and-martineau/
+- Reading an Old Thermometer — Royal Museums Greenwich · Thermometer NAV0839: https://www.rmg.co.uk/collections/objects/rmgc-object-43051
+- The Box That Changed Trade — Maersk · Explore our history: https://www.maersk.com/about/our-history/explore-our-history
+- A Small Cube in a Big Universe — NASA · CubeSat Launch Initiative: https://www.nasa.gov/cubesat-launch-initiative-introduction/
+- What Doubling Really Means — Intel · Moore's Law: https://www.intel.com/content/www/us/en/newsroom/resources/moores-law.html
+- The Chemistry in Your Pocket — Nobel Prize · Lithium-ion batteries: https://www.nobelprize.org/prizes/chemistry/2019/popular-information/
