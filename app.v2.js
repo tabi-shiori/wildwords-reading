@@ -6,7 +6,8 @@ const KEY = 'fieldnotes-2026-v2';
 const stored = localStorage.getItem(KEY);
 const state = stored ? JSON.parse(stored) : {version:2, mastered:[], saved:[], read:[], history:[], translation:false, voice:'', speed:0.9};
 let view = 'read', current = lessons[0].id, hiddenWords = false, activeWord = '', review = null;
-let search = '', wordFilter = 'all', lessonFilter = 'all';
+let search = '', wordFilter = 'all', lessonFilter = 'all', reviewMode = 'mixed';
+const lessonReviews = new Map();
 let quizAnswers = {}, quizRecorded = new Set(), utterance = null;
 const main = document.querySelector('#main');
 const dialog = document.querySelector('#word-dialog');
@@ -55,8 +56,9 @@ function annotate(text, lesson) {
 function renderRead() {
  const l = lessonById.get(current), i = lessons.indexOf(l);
  const count = l.paragraphs.map(p=>p.en).join(' ').split(/\s+/).length;
- main.innerHTML = '<div class="crumb"><span>阅读 / '+l.label+'</span><span>FIELD NOTE '+String(i+1).padStart(2,'0')+' / 09</span></div><article class="reading"><div class="article-head"><div><span class="badge">● 真实案例 · '+l.year+'</span><h2>'+l.title+'</h2><p class="zh-title">'+l.zhTitle+'</p><div class="article-meta"><span>约 2 分钟阅读</span><span>'+count+' 词</span><span>'+l.words.length+' 个目标词</span><span>B1–B2</span></div></div><div class="art">'+art(l.art)+'</div></div><div class="toolbar"><button class="btn primary" data-action="read-aloud">▶ 朗读全文</button><button class="btn" data-action="stop-audio" aria-label="停止朗读">■ 停止</button><button class="btn toggle" aria-pressed="'+state.translation+'" data-action="translation">译 显示译文</button><button class="btn toggle" aria-pressed="'+hiddenWords+'" data-action="cloze">◌ 遮挡自测</button><details class="voice-settings"><summary>语音设置</summary><div><select id="voice" aria-label="朗读语音"></select><select id="speed" aria-label="朗读速度"><option value="0.75">0.75× 慢速</option><option value="0.9">0.9×</option><option value="1">1× 正常</option></select></div></details></div><p class="tip">'+(hiddenWords?'根据上下文回忆空白处，点开即可核对单词。':'点绿色单词，查看音标、中文释义和文中例句。')+'</p><div class="article-body '+(hiddenWords?'cloze':'')+'">'+l.paragraphs.map(p=>'<section class="paragraph"><p class="en" lang="en">'+annotate(p.en,l)+'</p><p class="zh '+(state.translation?'':'hidden')+'">'+p.zh+'</p></section>').join('')+'</div><div class="source">事实来源：<a target="_blank" rel="noopener" href="'+l.source.url+'">'+l.source.name+' ↗</a><span>基于真实资料编写的学习短文，非媒体原文转载；教学算例已在文中注明。</span></div><div class="article-bottom"><button class="btn '+(state.read.includes(l.id)?'reading-done':'')+'" data-action="mark-read">'+(state.read.includes(l.id)?'✓ 已完成阅读':'✓ 读完了，记一笔')+'</button><button class="btn ghost" data-lesson="'+lessons[(i+1)%lessons.length].id+'">'+(i===lessons.length-1?'回到第一篇':'下一篇')+' →</button></div></article><div class="below-head"><h3>把这些词带走</h3><span>'+l.words.length+' 个目标词 · 点开词卡</span></div><div class="word-chips">'+words.filter(w=>w.lesson===l.id).map(w=>'<button class="chip" data-word="'+w.id+'">'+w.word+'<small>'+(state.mastered.includes(w.id)?'✓ 已掌握':w.meaning.split(' ')[0])+'</small></button>').join('')+'</div><section class="quiz"><h3>读懂了吗？</h3><p class="muted">仅根据短文判断。选完三题后保存本次成绩。</p><div id="quiz-questions"></div><button class="btn primary" data-action="submit-quiz">保存测验成绩</button><button class="btn ghost" data-action="restart-quiz">重新作答</button><p id="quiz-result" class="quiz-result" role="status"></p></section>';
+ main.innerHTML = '<div class="crumb"><span>阅读 / '+l.label+'</span><span>FIELD NOTE '+String(i+1).padStart(2,'0')+' / 09</span></div><article class="reading"><div class="article-head"><div><span class="badge">● 真实案例 · '+l.year+'</span><h2>'+l.title+'</h2><p class="zh-title">'+l.zhTitle+'</p><div class="article-meta"><span>约 2 分钟阅读</span><span>'+count+' 词</span><span>'+l.words.length+' 个目标词</span><span>B1–B2</span></div></div><div class="art">'+art(l.art)+'</div></div><div class="toolbar"><button class="btn primary" data-action="read-aloud">▶ 朗读全文</button><button class="btn" data-action="stop-audio" aria-label="停止朗读">■ 停止</button><button class="btn toggle" aria-pressed="'+state.translation+'" data-action="translation">译 显示译文</button><button class="btn toggle" aria-pressed="'+hiddenWords+'" data-action="cloze">◌ 遮挡自测</button><details class="voice-settings"><summary>语音设置</summary><div><select id="voice" aria-label="朗读语音"></select><select id="speed" aria-label="朗读速度"><option value="0.75">0.75× 慢速</option><option value="0.9">0.9×</option><option value="1">1× 正常</option></select></div></details></div><p class="tip">'+(hiddenWords?'根据上下文回忆空白处，点开即可核对单词。':'点绿色单词，查看音标、中文释义和文中例句。')+'</p><div class="article-body '+(hiddenWords?'cloze':'')+'">'+l.paragraphs.map(p=>'<section class="paragraph"><p class="en" lang="en">'+annotate(p.en,l)+'</p><p class="zh '+(state.translation?'':'hidden')+'">'+p.zh+'</p></section>').join('')+'</div><div class="source">事实来源：<a target="_blank" rel="noopener" href="'+l.source.url+'">'+l.source.name+' ↗</a><span>基于真实资料编写的学习短文，非媒体原文转载；教学算例已在文中注明。</span></div><div class="article-bottom"><button class="btn '+(state.read.includes(l.id)?'reading-done':'')+'" data-action="mark-read">'+(state.read.includes(l.id)?'✓ 已完成阅读':'✓ 读完了，记一笔')+'</button><button class="btn ghost" data-lesson="'+lessons[(i+1)%lessons.length].id+'">'+(i===lessons.length-1?'回到第一篇':'下一篇')+' →</button></div></article><div class="below-head"><h3>把这些词带走</h3><span>'+l.words.length+' 个目标词 · 点开词卡</span></div><div class="word-chips">'+words.filter(w=>w.lesson===l.id).map(w=>'<button class="chip" data-word="'+w.id+'">'+w.word+'<small>'+(state.mastered.includes(w.id)?'✓ 已掌握':w.meaning.split(' ')[0])+'</small></button>').join('')+'</div><section class="lesson-review" aria-labelledby="lesson-review-title"><div class="below-head"><h3 id="lesson-review-title">本篇词汇复习</h3><span>英汉双向 · 四选一</span></div><div id="lesson-review-content"></div></section><section class="quiz"><h3>读懂了吗？</h3><p class="muted">仅根据短文判断。选完三题后保存本次成绩。</p><div id="quiz-questions"></div><button class="btn primary" data-action="submit-quiz">保存测验成绩</button><button class="btn ghost" data-action="restart-quiz">重新作答</button><p id="quiz-result" class="quiz-result" role="status"></p></section>';
  renderQuiz();
+ renderLessonReview();
  renderVoices();
  document.querySelector('#speed').value = String(state.speed);
 }
@@ -84,36 +86,62 @@ function renderWordGrid() {
  document.querySelector('#word-count').textContent=filtered.length+' 个词';
  document.querySelector('#word-grid').innerHTML=filtered.length?filtered.map(w=>'<button class="vocab-card" data-word="'+w.id+'"><strong>'+w.word+'</strong><span class="ipa">'+w.ipa+'</span><span class="saved-tag">'+(state.mastered.includes(w.id)?'✓':state.saved.includes(w.id)?'★':'')+'</span><p>'+w.meaning+'</p></button>').join(''):'<div class="empty">没有匹配的单词。试试其他关键词或筛选条件。</div>';
 }
+function modeControls() {
+ return '<div class="review-modes" role="group" aria-label="选择复习方向">'+[['en-zh','英选汉'],['zh-en','汉选英'],['mixed','双向交替']].map(([id,label])=>'<button class="mode-button" data-review-mode="'+id+'" aria-pressed="'+(reviewMode===id)+'">'+label+'</button>').join('')+'</div>';
+}
+function activeReview() { return view==='read' ? lessonReviews.get(current) : review; }
+function reviewRoot() { return document.querySelector(view==='read'?'#lesson-review-content':'#review-content'); }
+function renderLessonReview() {
+ if(lessonReviews.has(current)){renderReviewCard();return;}
+ const l=lessonById.get(current);
+ document.querySelector('#lesson-review-content').innerHTML='<div class="review-box inline-review"><div class="review-top"><span>读完，就记一下</span><span>仅本篇 '+l.words.length+' 词</span></div><p class="muted">四选一，答题后看原文例句。</p>'+modeControls()+'<button class="btn primary" data-start="lesson">开始本篇复习 · '+l.words.length+' 词 →</button></div>';
+}
 function renderReview() {
- main.innerHTML='<span class="eyebrow">A LITTLE RECALL</span><h2 class="page-title">把“眼熟”变成“记得”。</h2><p class="page-lead">看中文，写英文。每组最多 10 个词，完成后保存成绩。</p><div id="review-content"></div>';
- if(!review) {
- document.querySelector('#review-content').innerHTML='<div class="review-box"><h3>今天从哪里开始？</h3><p class="muted">选一组词，先试着回忆，再看答案。</p><div class="data-tools"><button class="btn primary" data-start="new">尚未掌握 · '+(words.length-state.mastered.length)+' 词</button><button class="btn" data-start="saved">我的复习 · '+state.saved.length+' 词</button><button class="btn" data-start="all">全部词汇 · 75 词</button></div></div>'; return;
- }
- renderReviewCard();
+ main.innerHTML='<span class="eyebrow">ALL WORDS · ONE PLACE</span><h2 class="page-title">全部词汇，一起复习。</h2><p class="page-lead">覆盖全部 9 篇的 75 个词。四选一，可英选汉、汉选英，或双向交替。</p><div id="review-content"></div>';
+ renderReviewHome();
+}
+function renderReviewHome() {
+ if(review){renderReviewCard();return;}
+ document.querySelector('#review-content').innerHTML='<div class="review-box"><h3>先选一个方向</h3>'+modeControls()+'<button class="btn primary start-all" data-start="all">开始全部词汇 · 75 词 →</button><p class="muted">每轮覆盖所选范围内的所有词，不重复抽题。切换页面后，可回来接着做。</p><div class="data-tools"><button class="btn" data-start="new">只练未掌握 · '+(words.length-state.mastered.length)+' 词</button><button class="btn" data-start="saved">只练收藏 · '+state.saved.length+' 词</button></div></div>';
+}
+function shuffle(items) {
+ const result=[...items];
+ for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}
+ return result;
 }
 function beginReview(scope) {
- const pool=words.filter(w=>scope==='all'||scope==='new'&&!state.mastered.includes(w.id)||scope==='saved'&&state.saved.includes(w.id)).map(w=>w.id);
- if(!pool.length){notify(scope==='saved'?'还没有加入复习的词。点开词卡，选择“加入复习”。':'这些词都已掌握，可以选择全部词汇练习。');return;}
- for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
- review={ids:pool.slice(0,10),index:0,correct:0,answered:false,lastCorrect:false,completed:false};
- renderReview();
+ const pool=words.filter(w=>scope==='all'||scope==='lesson'&&w.lesson===current||scope==='new'&&!state.mastered.includes(w.id)||scope==='saved'&&state.saved.includes(w.id));
+ if(!pool.length){notify(scope==='saved'?'还没有收藏词。点开词卡，选择“加入复习”。':'这些词都已掌握，可以选择全部词汇练习。');return;}
+ const questions=shuffle(pool).map((w,index)=>{
+ const direction=reviewMode==='mixed'?(index%2===0?'en-zh':'zh-en'):reviewMode;
+ const candidates=words.filter(candidate=>candidate.id!==w.id&&candidate.meaning!==w.meaning);
+ const options=shuffle([w.id,...shuffle(candidates).slice(0,3).map(candidate=>candidate.id)]);
+ return {id:w.id,direction,options};
+ });
+ const session={questions,index:0,correct:0,selected:null,completed:false,mode:reviewMode,scope,
+ label:scope==='lesson'?'本篇词汇 · '+lessonById.get(current).zhTitle:scope==='all'?'全部词汇':scope==='new'?'未掌握词汇':'收藏词汇'};
+ if(scope==='lesson'){lessonReviews.set(current,session);}else{review=session;}
+ renderReviewCard();
 }
 function renderReviewCard() {
- const root=document.querySelector('#review-content');
- if(review.completed) {
- root.innerHTML='<div class="review-box"><span class="eyebrow">SESSION COMPLETE</span><h3 class="review-question">这组完成了。</h3><p class="page-title">'+review.correct+' / '+review.ids.length+'</p><p class="muted">成绩已保存。答错的词已经加入“我的复习”。</p><div class="data-tools"><button class="btn primary" data-action="review-again">再来一组</button><button class="btn" data-view="progress">查看记录</button></div></div>';return;
+ const session=activeReview(), root=reviewRoot();
+ if(session.completed){
+ root.innerHTML='<div class="review-box '+(view==='read'?'inline-review':'')+'"><span class="eyebrow">REVIEW COMPLETE</span><h3>这一轮完成了。</h3><p class="review-score">'+session.correct+' <small>/ '+session.questions.length+'</small></p><p class="muted">成绩已保存，答错的词已加入收藏复习。</p><div class="data-tools"><button class="btn primary" data-action="review-again">'+(view==='read'?'再复习本篇':'再练一轮')+'</button><button class="btn" data-action="review-setup">换个方向</button></div></div>';return;
  }
- const w=byId.get(review.ids[review.index]);
- root.innerHTML='<div class="review-box"><div class="review-top"><span>词汇回忆</span><span>'+String(review.index+1).padStart(2,'0')+' / '+review.ids.length+'</span></div><progress value="'+review.index+'" max="'+review.ids.length+'"></progress><h3 class="review-question">'+w.meaning+'</h3><p class="muted">来自「'+lessonById.get(w.lesson).label+'」</p><form class="review-form" id="spelling-form"><input id="spelling" aria-label="输入英文单词" placeholder="输入英文单词" autocomplete="off" autocapitalize="none" spellcheck="false" '+(review.answered?'disabled':'')+'><button class="btn primary" type="submit" '+(review.answered?'disabled':'')+'>核对答案</button></form>'+(review.answered?'<div class="review-answer"><div class="feedback '+(review.lastCorrect?'':'error')+'">'+(review.lastCorrect?'✓ 答对了':'再记一下这个词')+'</div><strong>'+w.word+'</strong><p class="muted">'+w.ipa+'</p><p class="example">'+escapeHTML(w.example)+'</p><button class="btn" data-word="'+w.id+'">查看完整词卡</button></div><button class="btn primary" data-action="next-word">'+(review.index+1===review.ids.length?'完成本组':'下一个词 →')+'</button>':'<button class="btn ghost" data-action="reveal-answer">想不起来，看看答案</button>')+'</div>';
- if(!review.answered)document.querySelector('#spelling').focus();
+ const question=session.questions[session.index], w=byId.get(question.id), answered=session.selected!==null;
+ const enToZh=question.direction==='en-zh';
+ root.innerHTML='<div class="review-box '+(view==='read'?'inline-review':'')+'"><div class="review-top"><span>'+(view==='read'?'本篇词汇':session.label)+' · '+(enToZh?'英选汉':'汉选英')+'</span><span>'+String(session.index+1).padStart(2,'0')+' / '+session.questions.length+'</span></div><progress value="'+session.index+'" max="'+session.questions.length+'"></progress><p class="review-instruction">'+(enToZh?'选出正确的中文意思':'选出对应的英文单词')+'</p><h3 class="review-question '+(enToZh?'english-prompt':'chinese-prompt')+'">'+(enToZh?w.word:w.meaning)+'</h3>'+(enToZh?'<div class="review-pronunciation"><span>'+w.ipa+'</span><button class="btn ghost" data-action="speak-review">▶ 读单词</button></div>':'')+'<div class="review-options">'+question.options.map((id,i)=>{
+ const option=byId.get(id), correct=id===w.id, selected=id===session.selected;
+ return '<button class="review-option '+(answered?(correct?'correct':selected?'incorrect':'dimmed'):'')+'" data-choice="'+id+'" '+(answered?'disabled':'')+'><span class="option-letter">'+String.fromCharCode(65+i)+'</span><span '+(!enToZh?'lang="en"':'')+'>'+(enToZh?option.meaning:option.word)+'</span>'+(answered&&correct?'<span class="option-check">✓</span>':'')+'</button>';
+ }).join('')+'</div>'+(answered?'<div class="review-answer"><p class="feedback '+(session.selected===w.id?'':'error')+'" role="status">'+(session.selected===w.id?'✓ 选对了':'正确答案：'+w.word+' · '+w.meaning)+'</p><p class="example" lang="en">'+escapeHTML(w.example)+'</p><button class="btn ghost" data-word="'+w.id+'">查看音标和完整词卡 →</button></div><button class="btn primary next-review" data-action="next-word">'+(session.index+1===session.questions.length?'完成本轮，保存成绩':'下一个词 →')+'</button>':'<button class="btn ghost skip-word" data-action="reveal-answer">想不起来，查看答案</button>')+'</div>';
 }
-function gradeWord(value) {
- if(review.answered)return;
- const w=byId.get(review.ids[review.index]);
- const normalized=value.toLowerCase().trim().replace(/\s+/g,' ');
- const correct=normalized===w.word.toLowerCase()||(w.id==='per-cent'&&normalized==='percent');
- review.answered=true;review.lastCorrect=correct;if(correct)review.correct++;
- if(!correct&&!state.saved.includes(w.id))state.saved.push(w.id);
+function gradeWord(choice) {
+ const session=activeReview();
+ if(session.selected!==null)return;
+ const w=byId.get(session.questions[session.index].id);
+ session.selected=choice;
+ if(choice===w.id)session.correct++;
+ else if(!state.saved.includes(w.id))state.saved.push(w.id);
  save();renderReviewCard();
 }
 function renderHistory() {
@@ -159,7 +187,7 @@ async function importProgress(file) {
  const incoming=JSON.parse(await file.text());
  if(incoming.app!=='fieldnotes'||incoming.version!==2||!['mastered','saved','read','history'].every(k=>Array.isArray(incoming[k])))throw new Error('请选择本版导出的 FIELDNOTES 进度文件。');
  if(!incoming.mastered.every(id=>byId.has(id))||!incoming.saved.every(id=>byId.has(id))||!incoming.read.every(id=>lessonById.has(id)))throw new Error('文件含有不属于本课程的词汇或阅读记录。');
- if(!incoming.history.every(h=>typeof h.label==='string'&&['read','quiz','spelling'].includes(h.type)&&Number.isFinite(Date.parse(h.at))&&Number.isFinite(h.score)&&Number.isFinite(h.total)))throw new Error('成绩记录格式不正确。');
+ if(!incoming.history.every(h=>typeof h.label==='string'&&['read','quiz','spelling','vocabulary'].includes(h.type)&&Number.isFinite(Date.parse(h.at))&&Number.isFinite(h.score)&&Number.isFinite(h.total)))throw new Error('成绩记录格式不正确。');
  for(const k of ['mastered','saved','read'])state[k]=[...new Set([...state[k],...incoming[k]])];
  state.history=[...new Map([...state.history,...incoming.history].map(h=>[h.at+'|'+h.type+'|'+h.label,h])).values()].sort((a,b)=>new Date(b.at)-new Date(a.at)).slice(0,100);
  save();render();notify('已合并导入的学习进度。');
@@ -171,6 +199,8 @@ document.addEventListener('click',event=>{
  if(button.dataset.lesson){navigate('read',button.dataset.lesson);return;}
  if(button.dataset.word){openWord(button.dataset.word);return;}
  if(button.dataset.start){beginReview(button.dataset.start);return;}
+ if(button.dataset.reviewMode){reviewMode=button.dataset.reviewMode;if(view==='read')renderLessonReview();else renderReviewHome();return;}
+ if(button.dataset.choice){gradeWord(button.dataset.choice);return;}
  if(button.dataset.question!==undefined){(quizAnswers[current]||= {})[button.dataset.question]=button.dataset.answer;renderQuiz();return;}
  const action=button.dataset.action;
  if(action==='close-word'){dialog.close();return;}
@@ -189,9 +219,15 @@ document.addEventListener('click',event=>{
  document.querySelector('#quiz-result').textContent='本次 '+score+' / '+l.questions.length+'，成绩已保存。';button.disabled=true;return;
  }
  if(action==='restart-quiz'){quizAnswers[current]={};quizRecorded.delete(current);renderQuiz();document.querySelector('#quiz-result').textContent='';return;}
+ if(action==='speak-review'){speak(byId.get(activeReview().questions[activeReview().index].id).word);return;}
  if(action==='reveal-answer'){gradeWord('');return;}
- if(action==='next-word'){review.index++;review.answered=false;if(review.index===review.ids.length){review.completed=true;record('spelling','词汇拼写',review.correct,review.ids.length);}renderReviewCard();return;}
- if(action==='review-again'){review=null;renderReview();return;}
+ if(action==='next-word'){
+ const session=activeReview();session.index++;session.selected=null;
+ if(session.index===session.questions.length){session.completed=true;record('vocabulary',session.label,session.correct,session.questions.length);}
+ renderReviewCard();return;
+ }
+ if(action==='review-again'){beginReview(activeReview().scope);return;}
+ if(action==='review-setup'){if(view==='read'){lessonReviews.delete(current);renderLessonReview();}else{review=null;renderReviewHome();}return;}
  if(action==='export'){exportProgress();return;}
  if(action==='import'){document.querySelector('#import-file').click();}
 });
@@ -203,7 +239,6 @@ document.addEventListener('change',e=>{
  if(e.target.id==='speed'){state.speed=Number(e.target.value);save();}
  if(e.target.id==='import-file'&&e.target.files[0]){importProgress(e.target.files[0]);e.target.value='';}
 });
-document.addEventListener('submit',e=>{if(e.target.id==='spelling-form'){e.preventDefault();gradeWord(document.querySelector('#spelling').value);}});
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 window.addEventListener('pagehide',stopAudio);
 if('speechSynthesis' in window)speechSynthesis.addEventListener('voiceschanged',renderVoices);
